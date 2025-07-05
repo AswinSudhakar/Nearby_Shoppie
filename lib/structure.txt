@@ -1,0 +1,92 @@
+lib/
+│
+├── core/
+│   ├── constants/
+│   │   └── app_strings.dart
+│   ├── utils/
+│   │   ├── validators.dart
+│   │   └── helpers.dart
+│   ├── theme/
+│   │   ├── app_colors.dart
+│   │   └── app_theme.dart
+│   ├── services/
+│   │   ├── location_service.dart
+│   │   ├── auth_service.dart
+│   │   └── notification_service.dart
+│   └── widgets/
+│       ├── custom_button.dart
+│       ├── input_field.dart
+│       └── loading_indicator.dart
+│
+├── models/
+│   ├── user_model.dart
+│   ├── product_model.dart
+│   ├── category_model.dart
+│   ├── order_model.dart
+│   ├── shop_model.dart
+│   └── message_model.dart
+│
+├── data/
+│   ├── local/
+│   │   └── local_storage_service.dart
+│   └── remote/
+│       ├── auth_api.dart
+│       ├── product_api.dart
+│       ├── shop_api.dart
+│       └── order_api.dart
+│
+├── view_models/
+│   ├── auth/
+│   │   ├── login_view_model.dart
+│   │   └── register_view_model.dart
+│   ├── home_view_model.dart
+│   ├── profile_view_model.dart
+│   ├── bag_view_model.dart
+│   ├── orders_view_model.dart
+│   ├── shop_view_model.dart
+│   ├── category_view_model.dart
+│   └── notification_view_model.dart
+│
+├── views/
+│   ├── auth/
+│   │   ├── login_page.dart
+│   │   ├── register_page.dart
+│   │   └── welcome_page.dart
+│   ├── splash/
+│   │   └── splash_screen.dart
+│   ├── home/
+│   │   ├── home_page.dart
+│   │   ├── drawer.dart
+│   │   ├── search_page.dart
+│   │   ├── category_list_page.dart
+│   │   └── category_detail_page.dart
+│   ├── product/
+│   │   └── product_page.dart
+│   ├── bag/
+│   │   ├── my_bag_page.dart
+│   │   └── order_now_page.dart
+│   ├── orders/
+│   │   ├── orders_page.dart
+│   │   ├── order_details_page.dart
+│   │   └── order_history_page.dart
+│   ├── profile/
+│   │   ├── profile_page.dart
+│   │   ├── edit_profile_page.dart
+│   │   ├── my_address_page.dart
+│   │   ├── wishlist_page.dart
+│   │   └── messages_page.dart
+│   ├── notifications/
+│   │   └── notification_page.dart
+│   └── shop/
+│       ├── shops_list_page.dart
+│       ├── add_shop_page.dart
+│       ├── shop_page.dart   // Generic shop template
+│       └── individual/
+│           ├── shop1_page.dart
+│           └── shop2_page.dart
+│
+├── routes/
+│   ├── app_routes.dart
+│   └── route_generator.dart
+│
+├── main.dart
