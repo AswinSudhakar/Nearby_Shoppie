@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/auth/auth_home.dart';
 import 'package:nearby_shoppiee/views/auth/login_page.dart';
 
@@ -34,9 +35,11 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/images/460.jpg'),
-            Text(
-              'Shoppikko',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
+
+            CustomText(
+              text: 'Shoppikko',
+              fontSize: 30,
+              fontFamily: 'Crimson-SemiBold',
             ),
           ],
         ),

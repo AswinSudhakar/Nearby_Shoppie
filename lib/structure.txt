@@ -90,3 +90,9 @@ lib/
 │   └── route_generator.dart
 │
 ├── main.dart
+
+
+
+
+
+style: TextStyle(fontFamily: 'first'),
