@@ -11,8 +11,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _passswordController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passswordController = TextEditingController();
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -59,7 +59,7 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: 30),
 
             CustomTextFormField(
-              controller: _emailController,
+              controller: emailController,
               labelText: 'Email',
               hintText: 'Enter your email',
               prefixIcon: Icons.email,
@@ -73,7 +73,7 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             CustomTextFormField(
-              controller: _passswordController,
+              controller: passswordController,
               labelText: 'Password',
 
               hintText: 'Enter your Password',

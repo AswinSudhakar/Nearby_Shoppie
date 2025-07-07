@@ -7,16 +7,26 @@ import 'package:nearby_shoppiee/views/auth/login_page.dart';
 import 'package:nearby_shoppiee/views/auth/register_page.dart';
 import 'package:nearby_shoppiee/views/home/home_page.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _passswordController = TextEditingController();
-    TextEditingController _nameController = TextEditingController();
-    TextEditingController _phoneNumberController = TextEditingController();
+  State<RegisterPage> createState() => _RegisterPageState();
+}
 
+class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passswordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  String? _selectedCategory;
+
+  List<String> items = ['English', 'Hindi', 'Malayalam'];
+  DropdownMenuItem<String?> buildmenuitems(String item) =>
+      DropdownMenuItem(child: Text(item), value: item);
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -54,7 +64,7 @@ class RegisterPage extends StatelessWidget {
 
               SizedBox(height: 10),
               CustomTextFormField(
-                controller: _nameController,
+                controller: nameController,
                 labelText: 'Full Name',
                 hintText: 'Enter your Full Name',
                 prefixIcon: Icons.person,
@@ -68,7 +78,7 @@ class RegisterPage extends StatelessWidget {
               ),
               SizedBox(height: 10),
               CustomTextFormField(
-                controller: _emailController,
+                controller: emailController,
                 labelText: 'Email',
                 hintText: 'Enter your email',
                 prefixIcon: Icons.email,
@@ -82,7 +92,7 @@ class RegisterPage extends StatelessWidget {
               ),
               SizedBox(height: 10),
               CustomTextFormField(
-                controller: _phoneNumberController,
+                controller: phoneNumberController,
                 labelText: 'Phone',
                 hintText: 'Enter your Phone Number',
                 prefixIcon: Icons.email,
@@ -97,7 +107,7 @@ class RegisterPage extends StatelessWidget {
               SizedBox(height: 10),
 
               CustomTextFormField(
-                controller: _passswordController,
+                controller: passswordController,
                 labelText: 'Password',
 
                 hintText: 'Enter your Password',
@@ -111,6 +121,21 @@ class RegisterPage extends StatelessWidget {
                 },
               ),
               SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DropdownButton<String?>(
+                  hint: Text('Select Audio Language'),
+                  isExpanded: true,
+                  value: _selectedCategory,
+                  items: items.map(buildmenuitems).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedCategory = value;
+                    });
+                  },
+                ),
+              ),
+
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
