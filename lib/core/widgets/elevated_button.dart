@@ -48,7 +48,8 @@ class CustomElevatedButton extends StatelessWidget {
                 label,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontFamily: fontfamily,
+                  fontFamily: 'Crimson-Bold',
+                  fontSize: 19,
                   color: labelColor,
                 ),
               )

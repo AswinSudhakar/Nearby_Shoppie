@@ -23,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   List<String> items = ['English', 'Hindi', 'Malayalam'];
   DropdownMenuItem<String?> buildmenuitems(String item) =>
-      DropdownMenuItem(child: Text(item), value: item);
+      DropdownMenuItem(value: item, child: Text(item));
 
   @override
   Widget build(BuildContext context) {

@@ -19,7 +19,7 @@ class CustomText extends StatelessWidget {
     this.textAlign = TextAlign.start,
     this.maxLines,
     this.overflow,
-    this.fontFamily = 'CrimsonText-Bold',
+    this.fontFamily = 'Crimson-Bold',
   });
 
   @override

@@ -96,3 +96,10 @@ lib/
 
 
 style: TextStyle(fontFamily: 'first'),
+
+family: Crimson-Bold
+Crimson-SemiBold
+
+NavigationHelper.push(context, MyAddressPage());
+
+CustomText(text: "Nearby Shoppiee",fontSize: 25,fontFamily: 'Crimson-Bold',),
