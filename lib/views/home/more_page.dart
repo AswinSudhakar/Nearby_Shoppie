@@ -31,6 +31,7 @@ class MorePage extends StatelessWidget {
                   SizedBox(width: 10),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText(text: 'Aswin Thaliyil', fontSize: 20),
                       CustomText(text: ' +91 123456789', fontSize: 20),

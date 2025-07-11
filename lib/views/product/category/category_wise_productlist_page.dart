@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 
-class IndividualShopPage extends StatelessWidget {
-  final String name;
-  const IndividualShopPage({super.key, required this.name});
+class CategorywiseProductsPage extends StatelessWidget {
+  const CategorywiseProductsPage({super.key, required this.category});
+  final String category;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(),
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -27,7 +27,7 @@ class IndividualShopPage extends StatelessWidget {
                           'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
                         ),
                       ),
-                      CustomText(text: name, fontSize: 25),
+                      CustomText(text: category, fontSize: 25),
                     ],
                   ),
 
@@ -36,26 +36,7 @@ class IndividualShopPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 12),
-            SizedBox(
-              height: 40,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: 120,
-                    margin: EdgeInsets.only(right: 12),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.shade100,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: CustomText(text: 'Category $index', fontSize: 16),
-                    ),
-                  );
-                },
-              ),
-            ),
+
             SizedBox(height: 20),
             _ProductBuider(name: 'Tea Powder', price: '77', offerprice: '45'),
             _ProductBuider(
