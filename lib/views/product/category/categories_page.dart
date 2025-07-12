@@ -8,45 +8,60 @@ class CategoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> categories = [
+      {"name": "Grocery", "icon": Icons.shopping_bag},
+      {"name": "Electronics", "icon": Icons.electrical_services},
+      {"name": "Fashion", "icon": Icons.checkroom},
+      {"name": "Books", "icon": Icons.book},
+      {"name": "Toys", "icon": Icons.toys},
+      {"name": "Beauty", "icon": Icons.face},
+      {"name": "Home", "icon": Icons.home},
+      {"name": "Sports", "icon": Icons.sports_soccer},
+    ];
     return Scaffold(
-      appBar: AppBar(),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: double.infinity,
-
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                childAspectRatio: 1, // Width to height ratio
-              ),
-              itemCount: 20,
-              itemBuilder: (context, index) {
-                final category = 'category ${index + 1}';
-                return InkWell(
-                  onTap: () => NavigationHelper.push(
-                    context,
-                    CategorywiseProductsPage(category: category),
-                  ),
-                  child: Card(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          child: Image(
-                            image: NetworkImage(
-                              'https://th.bing.com/th/id/OIP.UoMZ3c0HHi4QKjBQBzXk1wHaFb?w=248&h=181&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-                            ),
-                          ),
-                        ),
-                        CustomText(text: category),
-                      ],
-                    ),
-                  ),
+      appBar: AppBar(title: CustomText(text: 'Categories', fontSize: 25)),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+          itemCount: categories.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 1.2,
+          ),
+          itemBuilder: (context, index) {
+            final category = categories[index];
+            return GestureDetector(
+              onTap: () {
+                NavigationHelper.push(
+                  context,
+                  CategorywiseProductsPage(category: category["name"]),
                 );
               },
-            ),
-          ),
-        ],
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(category["icon"], size: 40, color: Colors.deepPurple),
+                    SizedBox(height: 10),
+                    Text(
+                      category["name"],
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
