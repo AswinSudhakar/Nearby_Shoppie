@@ -3,6 +3,7 @@ import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/home/more_page.dart';
+import 'package:nearby_shoppiee/views/home/search_page.dart';
 import 'package:nearby_shoppiee/views/product/category/category_wise_productlist_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,6 +30,12 @@ class _HomePageState extends State<HomePage> {
           fontFamily: 'Crimson-Bold',
         ),
         actions: [
+          IconButton(
+            onPressed: () {
+              NavigationHelper.push(context, SearchPage());
+            },
+            icon: Icon(Icons.search),
+          ),
           IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
         ],
       ),

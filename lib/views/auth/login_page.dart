@@ -5,6 +5,7 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/core/widgets/text_form_field.dart';
 import 'package:nearby_shoppiee/views/auth/register_page.dart';
 import 'package:nearby_shoppiee/views/home/home_page.dart';
+import 'package:nearby_shoppiee/views/home/main_landing_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -100,7 +101,8 @@ class LoginPage extends StatelessWidget {
               width: 190,
               label: "Login",
               fontfamily: 'first',
-              onPressed: () => NavigationHelper.push(context, HomePage()),
+              onPressed: () =>
+                  NavigationHelper.pushReplacement(context, MainScreen()),
             ),
             SizedBox(height: 40),
             TextButton(

@@ -79,25 +79,25 @@ class MorePage extends StatelessWidget {
                   },
                 ),
                 _buildDrawerItem(icon: Icons.chat, text: 'Chats', onTap: () {}),
-                _buildDrawerItem(
-                  icon: Icons.store,
-                  text: 'Shops',
-                  onTap: () {
-                    NavigationHelper.push(context, ShopListPage());
-                  },
-                ),
+                // _buildDrawerItem(
+                //   icon: Icons.store,
+                //   text: 'Shops',
+                //   onTap: () {
+                //     NavigationHelper.push(context, ShopListPage());
+                //   },
+                // ),
                 _buildDrawerItem(
                   icon: Icons.logout,
                   text: 'Logout',
                   onTap: () {},
                 ),
-                _buildDrawerItem(
-                  icon: Icons.category,
-                  text: 'categories',
-                  onTap: () {
-                    NavigationHelper.push(context, CategoriesPage());
-                  },
-                ),
+                // _buildDrawerItem(
+                //   icon: Icons.category,
+                //   text: 'categories',
+                //   onTap: () {
+                //     NavigationHelper.push(context, CategoriesPage());
+                //   },
+                // ),
                 _buildDrawerItem(
                   icon: Icons.receipt_long,
                   text: 'product list page',
