@@ -17,6 +17,14 @@ class CategoriesPage extends StatelessWidget {
       {"name": "Beauty", "icon": Icons.face},
       {"name": "Home", "icon": Icons.home},
       {"name": "Sports", "icon": Icons.sports_soccer},
+      {"name": "Grocery", "icon": Icons.shopping_bag},
+      {"name": "Electronics", "icon": Icons.electrical_services},
+      {"name": "Fashion", "icon": Icons.checkroom},
+      {"name": "Books", "icon": Icons.book},
+      {"name": "Toys", "icon": Icons.toys},
+      {"name": "Beauty", "icon": Icons.face},
+      {"name": "Home", "icon": Icons.home},
+      {"name": "Sports", "icon": Icons.sports_soccer},
     ];
     return Scaffold(
       appBar: AppBar(title: CustomText(text: 'Categories', fontSize: 25)),
@@ -36,7 +44,10 @@ class CategoriesPage extends StatelessWidget {
               onTap: () {
                 NavigationHelper.push(
                   context,
-                  CategorywiseProductsPage(category: category["name"]),
+                  CategorywiseProductsPage(
+                    category: category["name"],
+                    icon: category["icon"],
+                  ),
                 );
               },
               child: Card(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/product/category/categories_page.dart';
+import 'package:nearby_shoppiee/views/product/product/product_details_page.dart';
 import 'package:nearby_shoppiee/views/product/product/product_list_page.dart';
 import 'package:nearby_shoppiee/views/profile/profile_page.dart';
 import 'package:nearby_shoppiee/views/profile/my_address_page.dart';
@@ -104,13 +105,13 @@ class MorePage extends StatelessWidget {
                     NavigationHelper.push(context, ProductListPage());
                   },
                 ),
-                // _buildDrawerItem(
-                //   icon: Icons.receipt_long,
-                //   text: 'My Orders',
-                //   onTap: () {
-                //     NavigationHelper.push(context, MyAddressPage());
-                //   },
-                // ),
+                _buildDrawerItem(
+                  icon: Icons.receipt_long,
+                  text: 'Product details',
+                  onTap: () {
+                    NavigationHelper.push(context, ProductDetailsPage());
+                  },
+                ),
               ],
             ),
           ),

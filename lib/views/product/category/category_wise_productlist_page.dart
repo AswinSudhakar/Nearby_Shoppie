@@ -3,8 +3,9 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 
 class CategorywiseProductsPage extends StatelessWidget {
   final String category;
+  IconData? icon;
 
-  const CategorywiseProductsPage({super.key, required this.category});
+  CategorywiseProductsPage({super.key, required this.category, this.icon});
 
   final List<Map<String, String>> products = const [
     {"name": "Tea Powder", "price": "77", "offerPrice": "45"},
@@ -38,9 +39,13 @@ class CategorywiseProductsPage extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 24,
-                      backgroundImage: NetworkImage(
-                        'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-                      ),
+
+                      backgroundImage: icon == null
+                          ? NetworkImage(
+                              'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+                            )
+                          : null,
+                      child: Icon(icon),
                     ),
                     const SizedBox(width: 12),
                     CustomText(
