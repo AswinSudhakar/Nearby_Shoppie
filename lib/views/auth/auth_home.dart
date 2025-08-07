@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
+import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/views/auth/login_page.dart';
 import 'package:nearby_shoppiee/views/auth/register_page.dart';
@@ -23,7 +23,12 @@ class AuthHome extends StatelessWidget {
               label: 'Login',
               fontfamily: 'Crimson-SemiBold',
               onPressed: () {
-                NavigationHelper.push(context, LoginPage());
+                // NavigationHelper.push(context, LoginPage());
+                Get.to(
+                  LoginPage(),
+                  transition: Transition.fade,
+                  duration: Duration(seconds: 1),
+                );
               },
             ),
             SizedBox(height: 20),
@@ -33,7 +38,12 @@ class AuthHome extends StatelessWidget {
               label: 'Register',
               fontfamily: 'Crimson-SemiBold',
               onPressed: () {
-                NavigationHelper.push(context, RegisterPage());
+                // NavigationHelper.push(context, RegisterPage());
+                Get.to(
+                  RegisterPage(),
+                  transition: Transition.fade,
+                  duration: Duration(seconds: 1),
+                );
               },
             ),
             SizedBox(height: 20),
@@ -49,7 +59,7 @@ class AuthHome extends StatelessWidget {
                 SizedBox(width: 10),
                 CircleAvatar(
                   child: Image.network(
-                    'https://th.bing.com/th/id/OIP.aoNGSVIqKHtM-NWf3QrvdwHaHa?w=184&h=184&c=7&r=0&o=5&dpr=1.3&pid=1.7',
+                    'https://cdn2.hubspot.net/hubfs/53/image8-2.jpg',
                     fit: BoxFit.cover,
                   ),
                 ),

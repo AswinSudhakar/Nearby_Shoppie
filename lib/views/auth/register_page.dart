@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
+import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/core/widgets/text_form_field.dart';
 import 'package:nearby_shoppiee/views/auth/login_page.dart';
-import 'package:nearby_shoppiee/views/home/home_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -149,12 +148,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 width: 190,
                 label: "Register",
                 fontfamily: 'first',
-                onPressed: () => NavigationHelper.push(context, HomePage()),
+                onPressed: () =>
+                    // NavigationHelper.push(context, HomePage()),
+                    Get.to(
+                      LoginPage(),
+                      transition: Transition.leftToRight,
+                      duration: Duration(seconds: 1),
+                    ),
               ),
               SizedBox(height: 40),
               TextButton(
                 onPressed: () {
-                  NavigationHelper.push(context, LoginPage());
+                  // NavigationHelper.push(context, LoginPage());
+                  Get.to(LoginPage());
                 },
                 child: Text(
                   ' have an Account? Sign-in',

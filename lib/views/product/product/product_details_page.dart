@@ -29,7 +29,7 @@ class ProductDetailsPage extends StatelessWidget {
                 options: CarouselOptions(
                   height: 250,
                   enlargeCenterPage: true,
-                  enableInfiniteScroll: false,
+                  enableInfiniteScroll: true,
                   autoPlay: false,
                 ),
                 items: imageUrls

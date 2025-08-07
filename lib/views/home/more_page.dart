@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
+import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/product/category/categories_page.dart';
+import 'package:nearby_shoppiee/views/auth/login_page.dart';
+import 'package:nearby_shoppiee/views/orders/cart_page.dart';
+import 'package:nearby_shoppiee/views/orders/orders_page.dart';
 import 'package:nearby_shoppiee/views/product/product/product_details_page.dart';
 import 'package:nearby_shoppiee/views/product/product/product_list_page.dart';
 import 'package:nearby_shoppiee/views/profile/profile_page.dart';
 import 'package:nearby_shoppiee/views/profile/my_address_page.dart';
-import 'package:nearby_shoppiee/views/shop/shop_list_page.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({super.key});
@@ -53,7 +54,8 @@ class MorePage extends StatelessWidget {
                   icon: Icons.person,
                   text: 'Profile',
                   onTap: () {
-                    NavigationHelper.push(context, ProfilePage());
+                    // NavigationHelper.push(context, ProfilePage());
+                    Get.to(ProfilePage());
                   },
                 ),
 
@@ -61,21 +63,24 @@ class MorePage extends StatelessWidget {
                   icon: Icons.location_on,
                   text: 'My Address',
                   onTap: () {
-                    NavigationHelper.push(context, MyAddressPage());
+                    // NavigationHelper.push(context, MyAddressPage());
+                    Get.to(MyAddressPage());
                   },
                 ),
                 _buildDrawerItem(
                   icon: Icons.receipt_long,
                   text: 'My Orders',
                   onTap: () {
-                    NavigationHelper.push(context, MyAddressPage());
+                    // NavigationHelper.push(context, OrdersPage());
+                    Get.to(OrdersPage());
                   },
                 ),
                 _buildDrawerItem(
                   icon: Icons.shopping_bag,
                   text: 'My Wishlst',
                   onTap: () {
-                    NavigationHelper.push(context, MyAddressPage());
+                    // NavigationHelper.push(context, Cart());
+                    Get.to(Cart());
                   },
                 ),
                 _buildDrawerItem(icon: Icons.chat, text: 'Chats', onTap: () {}),
@@ -89,7 +94,9 @@ class MorePage extends StatelessWidget {
                 _buildDrawerItem(
                   icon: Icons.logout,
                   text: 'Logout',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(LoginPage());
+                  },
                 ),
                 // _buildDrawerItem(
                 //   icon: Icons.category,
@@ -102,14 +109,16 @@ class MorePage extends StatelessWidget {
                   icon: Icons.receipt_long,
                   text: 'product list page',
                   onTap: () {
-                    NavigationHelper.push(context, ProductListPage());
+                    // NavigationHelper.push(context, ProductListPage());
+                    Get.to(ProductListPage());
                   },
                 ),
                 _buildDrawerItem(
                   icon: Icons.receipt_long,
                   text: 'Product details',
                   onTap: () {
-                    NavigationHelper.push(context, ProductDetailsPage());
+                    // NavigationHelper.push(context, ProductDetailsPage());
+                    Get.to(ProductDetailsPage());
                   },
                 ),
               ],
@@ -133,10 +142,5 @@ class MorePage extends StatelessWidget {
       ),
       onTap: onTap,
     );
-  }
-
-  void _navigateTo(BuildContext context, Widget page) {
-    Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => page));
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
+import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/product/category/category_wise_productlist_page.dart';
+import 'package:nearby_shoppiee/views/product/product/product_list_page.dart';
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({super.key});
@@ -42,13 +42,15 @@ class CategoriesPage extends StatelessWidget {
             final category = categories[index];
             return GestureDetector(
               onTap: () {
-                NavigationHelper.push(
-                  context,
-                  CategorywiseProductsPage(
-                    category: category["name"],
-                    icon: category["icon"],
-                  ),
-                );
+                // NavigationHelper.push(
+                //   context,
+                //   ProductListPage(),
+                //   // CategorywiseProductsPage(
+                //   //   category: category["name"],
+                //   //   icon: category["icon"],
+                //   // ),
+                // );
+                Get.to(ProductListPage());
               },
               child: Card(
                 elevation: 4,

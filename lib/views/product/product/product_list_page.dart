@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
-import 'package:nearby_shoppiee/core/widgets/text.dart';
+import 'package:get/get.dart';
 import 'package:nearby_shoppiee/views/product/product/product_details_page.dart';
 
 class ProductListPage extends StatefulWidget {
@@ -109,14 +108,22 @@ class _ProductListPageState extends State<ProductListPage> {
           itemBuilder: (context, index) {
             final product = products[index];
             return InkWell(
-              onTap: () => NavigationHelper.push(
-                context,
-                ProductDetailsPage(
-                  name: product["name"],
-                  image: product["image"],
-                  price: product["price"],
-                ),
-              ),
+              onTap: () =>
+                  //  NavigationHelper.push(
+                  //   context,
+                  //   ProductDetailsPage(
+                  //     name: product["name"],
+                  //     image: product["image"],
+                  //     price: product["price"],
+                  //   ),
+                  // ),
+                  Get.to(
+                    ProductDetailsPage(
+                      name: product["name"],
+                      image: product["image"],
+                      price: product["price"],
+                    ),
+                  ),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
