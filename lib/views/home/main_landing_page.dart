@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nearby_shoppiee/views/bag/whishlist_page.dart';
 import 'package:nearby_shoppiee/views/home/home_page.dart';
 import 'package:nearby_shoppiee/views/home/more_page.dart';
 import 'package:nearby_shoppiee/views/product/category/categories_page.dart';

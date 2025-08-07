@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 
 import 'package:nearby_shoppiee/core/widgets/text.dart';
@@ -8,6 +7,7 @@ import 'package:nearby_shoppiee/views/home/more_page.dart';
 import 'package:nearby_shoppiee/views/home/notification_page.dart';
 import 'package:nearby_shoppiee/views/home/search_page.dart';
 import 'package:nearby_shoppiee/views/product/category/category_wise_productlist_page.dart';
+import 'package:nearby_shoppiee/views/shop/individual/individual_shop_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -159,33 +159,39 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(left: 10),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
+                        child: GestureDetector(
+                          onTap: () => NavigationHelper.push(
+                            context,
+                            IndividualShopPage(name: 'Shop Name'),
                           ),
-                          elevation: 3,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(15),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            elevation: 3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(15),
+                                  ),
+                                  child: Image.network(
+                                    'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+                                    height: 160,
+                                    width: 150,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                                child: Image.network(
-                                  'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-                                  height: 160,
-                                  width: 150,
-                                  fit: BoxFit.cover,
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: CustomText(
+                                    text: 'Shop Name',
+                                    fontSize: 16,
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CustomText(
-                                  text: 'Shop Name',
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       );

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 import 'package:nearby_shoppiee/views/product/product/product_details_page.dart';
 
 class ProductListPage extends StatefulWidget {
