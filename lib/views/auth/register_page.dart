@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
@@ -149,12 +151,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 width: 190,
                 label: "Register",
                 fontfamily: 'first',
-                onPressed: () => NavigationHelper.push(context, HomePage()),
+                onPressed: () =>
+                    // NavigationHelper.push(context, HomePage()),
+                    Get.to(
+                      LoginPage(),
+                      transition: Transition.leftToRight,
+                      duration: Duration(seconds: 1),
+                    ),
               ),
               SizedBox(height: 40),
               TextButton(
                 onPressed: () {
-                  NavigationHelper.push(context, LoginPage());
+                  // NavigationHelper.push(context, LoginPage());
+                  Get.to(LoginPage());
                 },
                 child: Text(
                   ' have an Account? Sign-in',

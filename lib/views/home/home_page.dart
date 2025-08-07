@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/home/more_page.dart';
+import 'package:nearby_shoppiee/views/home/notification_page.dart';
 import 'package:nearby_shoppiee/views/home/search_page.dart';
 import 'package:nearby_shoppiee/views/product/category/category_wise_productlist_page.dart';
 
@@ -20,7 +23,8 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            NavigationHelper.push(context, MorePage());
+            // NavigationHelper.push(context, MorePage());
+            Get.to(MorePage());
           },
           icon: Icon(Icons.menu),
         ),
@@ -32,11 +36,18 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: () {
-              NavigationHelper.push(context, SearchPage());
+              // NavigationHelper.push(context, SearchPage());
+              Get.to(SearchPage());
             },
             icon: Icon(Icons.search),
           ),
-          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
+          IconButton(
+            onPressed: () {
+              // NavigationHelper.push(context, NotificationPage());
+              Get.to(NotificationPage());
+            },
+            icon: Icon(Icons.notifications),
+          ),
         ],
       ),
       body: Padding(
@@ -89,24 +100,33 @@ class _HomePageState extends State<HomePage> {
                   height: 300,
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
+                      crossAxisCount: 3,
                       childAspectRatio: 1, // Width to height ratio
                     ),
                     itemCount: 20,
                     itemBuilder: (context, index) {
                       final category = 'category ${index + 1}';
                       return InkWell(
-                        onTap: () => NavigationHelper.push(
-                          context,
-                          CategorywiseProductsPage(category: category),
-                        ),
+                        onTap: () =>
+                            // NavigationHelper.push(
+                            //   context,
+                            //   CategorywiseProductsPage(category: category),
+                            // ),
+                            Get.to(
+                              CategorywiseProductsPage(category: category),
+                            ),
                         child: Card(
                           child: Column(
                             children: [
-                              SizedBox(
-                                child: Image(
-                                  image: NetworkImage(
-                                    'https://th.bing.com/th/id/OIP.UoMZ3c0HHi4QKjBQBzXk1wHaFb?w=248&h=181&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  height: 70,
+                                  child: Image(
+                                    image: NetworkImage(
+                                      'https://static.vecteezy.com/system/resources/previews/024/123/312/non_2x/one-single-line-drawing-of-fresh-vegetables-milk-lettuce-carrot-and-bread-graphic-illustration-daily-staple-food-badge-concept-modern-continuous-line-draw-grocery-store-design-png.png',
+                                    ),
+                                    height: 60,
                                   ),
                                 ),
                               ),
@@ -122,6 +142,7 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 20),
 
+            //Horizondal Nearby Shops List
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

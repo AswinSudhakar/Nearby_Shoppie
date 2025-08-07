@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/auth/auth_home.dart';
 
@@ -18,11 +20,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _navigate_screen() async {
     await Future.delayed(Duration(seconds: 4));
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => AuthHome()),
+    Get.to(
+      AuthHome(),
+      transition: Transition.zoom,
+      duration: Duration(seconds: 1),
     );
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => AuthHome()),
+    // );
   }
 
   @override

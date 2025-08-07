@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/core/widgets/text_form_field.dart';
 import 'package:nearby_shoppiee/views/auth/register_page.dart';
-import 'package:nearby_shoppiee/views/home/home_page.dart';
 import 'package:nearby_shoppiee/views/home/main_landing_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -101,13 +102,31 @@ class LoginPage extends StatelessWidget {
               width: 190,
               label: "Login",
               fontfamily: 'first',
-              onPressed: () =>
-                  NavigationHelper.pushReplacement(context, MainScreen()),
+              onPressed: () {
+                Get.to(
+                  MainScreen(),
+                  transition: Transition.leftToRightWithFade,
+                  duration: Duration(seconds: 1),
+                );
+                Get.snackbar(
+                  'Message',
+                  'Login Successful',
+                  backgroundColor: Colors.greenAccent,
+                  padding: EdgeInsets.all(8),
+                );
+              },
+
+              // NavigationHelper.pushReplacement(context, MainScreen()),
             ),
             SizedBox(height: 40),
             TextButton(
               onPressed: () {
-                NavigationHelper.push(context, RegisterPage());
+                // NavigationHelper.push(context, RegisterPage());
+                Get.to(
+                  RegisterPage(),
+                  transition: Transition.leftToRightWithFade,
+                  duration: Duration(seconds: 1),
+                );
               },
               child: Text(
                 'Dont have an Account? Sign-up',
