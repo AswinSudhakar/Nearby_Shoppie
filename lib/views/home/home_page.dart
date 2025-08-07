@@ -183,6 +183,7 @@ class _HomePageState extends State<HomePage> {
                                     fit: BoxFit.cover,
                                   ),
                                 ),
+
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CustomText(
