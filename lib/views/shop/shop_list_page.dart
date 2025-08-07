@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/shop/add_shop_page.dart';
+import 'package:nearby_shoppiee/views/shop/add_shops_qr_page.dart';
 import 'package:nearby_shoppiee/views/shop/individual/individual_shop_page.dart';
 
 class ShopListPage extends StatelessWidget {
@@ -17,7 +20,8 @@ class ShopListPage extends StatelessWidget {
           label: 'Add New Shop',
           backgroundColor: Colors.greenAccent,
           onPressed: () {
-            NavigationHelper.push(context, AddShopPage());
+            // NavigationHelper.push(context, AddShopPage());
+            Get.to(AddShopPage());
           },
         ),
       ),
@@ -81,7 +85,8 @@ class ShopListPage extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                NavigationHelper.push(context, IndividualShopPage(name: name));
+                // NavigationHelper.push(context, IndividualShopPage(name: name));
+                Get.to(IndividualShopPage(name: name));
               },
               child: ListTile(
                 title: CustomText(text: name, fontSize: 23),

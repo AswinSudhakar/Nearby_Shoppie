@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/auth/login_page.dart';
+import 'package:nearby_shoppiee/views/chat/chat_page.dart';
 import 'package:nearby_shoppiee/views/orders/cart_page.dart';
 import 'package:nearby_shoppiee/views/orders/orders_page.dart';
 import 'package:nearby_shoppiee/views/product/product/product_details_page.dart';
@@ -83,12 +84,19 @@ class MorePage extends StatelessWidget {
                     Get.to(Cart());
                   },
                 ),
-                _buildDrawerItem(icon: Icons.chat, text: 'Chats', onTap: () {}),
+                _buildDrawerItem(
+                  icon: Icons.chat,
+                  text: 'Chats',
+                  onTap: () {
+                    Get.to(ChatPage());
+                  },
+                ),
                 // _buildDrawerItem(
                 //   icon: Icons.store,
                 //   text: 'Shops',
                 //   onTap: () {
                 //     NavigationHelper.push(context, ShopListPage());
+
                 //   },
                 // ),
                 _buildDrawerItem(
