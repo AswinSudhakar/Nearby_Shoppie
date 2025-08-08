@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
+import 'package:nearby_shoppiee/views/home/home_page.dart';
+import 'package:nearby_shoppiee/views/product/category/categories_page.dart';
+import 'package:nearby_shoppiee/views/product/product/product_list_page.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -60,7 +65,9 @@ class _CartState extends State<Cart> {
 
               CustomElevatedButton(
                 label: 'Add More Products',
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(CategoriesPage());
+                },
                 backgroundColor: const Color.fromARGB(255, 136, 231, 139),
               ),
               SizedBox(height: 10),
@@ -157,7 +164,9 @@ class _CartState extends State<Cart> {
                 child: CustomElevatedButton(
                   label: 'Place Order',
                   width: double.infinity,
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.off(HomePage());
+                  },
                   backgroundColor: const Color.fromARGB(255, 136, 231, 139),
                 ),
               ),

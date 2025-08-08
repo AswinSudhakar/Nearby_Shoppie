@@ -17,7 +17,8 @@ Navigation=====>>>>
 
 
 namedRoutes==>>
-                  initialroute: '/';
+   materialapp=>  initialroute: '/';
+
                   Getpages:[
                   Getpage(name:'/',page:()=>page()),
                   Getpage(name:'/second',page:()=>page()),
