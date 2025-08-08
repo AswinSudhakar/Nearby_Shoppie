@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/product/product/product_details_page.dart';
 
 class ProductListPage extends StatefulWidget {
-  const ProductListPage({super.key});
-
+  const ProductListPage({super.key, required this.categoryname});
+  final String? categoryname;
   @override
   State<ProductListPage> createState() => _ProductListPageState();
 }
@@ -89,7 +90,7 @@ class _ProductListPageState extends State<ProductListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Snacks'),
+        title: CustomText(text: '${widget.categoryname}', fontSize: 25),
         leading: const BackButton(),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -167,6 +168,52 @@ class _ProductListPageState extends State<ProductListPage> {
                               content: Text('${product["name"]} added to bag'),
                             ),
                           );
+
+                          // Get.bottomSheet(
+                          //   elevation: 10,
+                          //   SafeArea(
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.all(15.0),
+                          //       child: Container(
+                          //         decoration: BoxDecoration(
+                          //           color: const Color.fromARGB(
+                          //             255,
+                          //             128,
+                          //             235,
+                          //             132,
+                          //           ),
+                          //           borderRadius: BorderRadius.circular(20),
+                          //         ),
+                          //         height: 50,
+                          //         width: 300,
+                          //         child: Column(
+                          //           mainAxisAlignment: MainAxisAlignment.center,
+                          //           children: [
+                          //             CustomText(
+                          //               text: '${product["name"]} added to bag',
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // );
+                          // Future.delayed(Duration(seconds: 2), () {
+                          //   if (Get.isBottomSheetOpen ?? false) {
+                          //     Get.back();
+                          //   }
+                          // });
+
+                          // Get.snackbar(
+                          //   '',
+                          //   '${product["name"]} added to bag',
+                          //   padding: EdgeInsets.all(8),
+                          //   margin: const EdgeInsets.only(
+                          //     bottom: 20,
+                          //     right: 50,
+                          //     left: 50,
+                          //   ),
+                          // );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green,

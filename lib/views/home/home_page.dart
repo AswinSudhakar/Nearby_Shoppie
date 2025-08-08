@@ -21,13 +21,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            // NavigationHelper.push(context, MorePage());
-            Get.to(MorePage());
-          },
-          icon: Icon(Icons.menu),
-        ),
+        automaticallyImplyLeading: false,
+
+        // leading: IconButton(
+        //   onPressed: () {
+        //     // NavigationHelper.push(context, MorePage());
+        //     Get.to(MorePage());
+        //   },
+        //   icon: Icon(Icons.menu),
+        // ),
         title: CustomText(
           text: "Nearby Shoppiee",
           fontSize: 25,
@@ -103,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                       crossAxisCount: 3,
                       childAspectRatio: 1, // Width to height ratio
                     ),
-                    itemCount: 20,
+                    itemCount: 18,
                     itemBuilder: (context, index) {
                       final category = 'category ${index + 1}';
                       return InkWell(

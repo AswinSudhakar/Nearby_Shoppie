@@ -137,6 +137,7 @@ class MorePage extends StatelessWidget {
                 //     NavigationHelper.push(context, CategoriesPage());
                 //   },
                 // ),
+
                 _buildDrawerItem(
                   icon: Icons.receipt_long,
                   text: 'Product list page'.tr,
