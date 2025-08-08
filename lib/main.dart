@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:nearby_shoppiee/core/translation/translation.dart';
 import 'package:nearby_shoppiee/views/splash/splash_screen.dart';
 
 void main() {
@@ -13,6 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: GetMaterialApp(
+        translations: MyTranslations(),
+        locale: Locale('en', 'US'),
+        fallbackLocale: Locale('en', 'US'),
+
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),

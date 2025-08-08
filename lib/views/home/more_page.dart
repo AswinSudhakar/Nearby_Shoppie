@@ -15,8 +15,31 @@ class MorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMalayalam = Get.locale?.languageCode == 'ml';
+
     return Scaffold(
-      appBar: AppBar(title: CustomText(text: 'More', fontSize: 25)),
+      appBar: AppBar(
+        title: CustomText(text: 'More', fontSize: 25),
+        actions: [
+          Row(
+            children: [
+              Text('EN', style: TextStyle(fontSize: 14)),
+              Switch(
+                value: isMalayalam,
+                onChanged: (value) {
+                  if (value) {
+                    Get.updateLocale(const Locale('ml', 'IN'));
+                  } else {
+                    Get.updateLocale(const Locale('en', 'US'));
+                  }
+                },
+              ),
+              Text('ML', style: TextStyle(fontSize: 14)),
+              SizedBox(width: 8),
+            ],
+          ),
+        ],
+      ),
       body: Column(
         children: [
           SizedBox(
@@ -53,7 +76,7 @@ class MorePage extends StatelessWidget {
               children: [
                 _buildDrawerItem(
                   icon: Icons.person,
-                  text: 'Profile',
+                  text: 'Profile'.tr,
                   onTap: () {
                     // NavigationHelper.push(context, ProfilePage());
                     Get.to(ProfilePage());
@@ -62,7 +85,7 @@ class MorePage extends StatelessWidget {
 
                 _buildDrawerItem(
                   icon: Icons.location_on,
-                  text: 'My Address',
+                  text: 'My Address'.tr,
                   onTap: () {
                     // NavigationHelper.push(context, MyAddressPage());
                     Get.to(MyAddressPage());
@@ -70,7 +93,7 @@ class MorePage extends StatelessWidget {
                 ),
                 _buildDrawerItem(
                   icon: Icons.receipt_long,
-                  text: 'My Orders',
+                  text: 'My Orders'.tr,
                   onTap: () {
                     // NavigationHelper.push(context, OrdersPage());
                     Get.to(OrdersPage());
@@ -78,15 +101,16 @@ class MorePage extends StatelessWidget {
                 ),
                 _buildDrawerItem(
                   icon: Icons.shopping_bag,
-                  text: 'My Wishlst',
+                  text: 'Cart'.tr,
                   onTap: () {
                     // NavigationHelper.push(context, Cart());
                     Get.to(Cart());
                   },
                 ),
+
                 _buildDrawerItem(
                   icon: Icons.chat,
-                  text: 'Chats',
+                  text: 'Chats'.tr,
                   onTap: () {
                     Get.to(ChatPage());
                   },
@@ -101,7 +125,7 @@ class MorePage extends StatelessWidget {
                 // ),
                 _buildDrawerItem(
                   icon: Icons.logout,
-                  text: 'Logout',
+                  text: 'Logout'.tr,
                   onTap: () {
                     Get.to(LoginPage());
                   },
@@ -113,22 +137,24 @@ class MorePage extends StatelessWidget {
                 //     NavigationHelper.push(context, CategoriesPage());
                 //   },
                 // ),
-                // _buildDrawerItem(
-                //   icon: Icons.receipt_long,
-                //   text: 'product list page',
-                //   onTap: () {
-                //     // NavigationHelper.push(context, ProductListPage());
-                //     Get.to(ProductListPage());
-                //   },
-                // ),
+
                 _buildDrawerItem(
                   icon: Icons.receipt_long,
-                  text: 'Product details',
+                  text: 'Product list page'.tr,
                   onTap: () {
-                    // NavigationHelper.push(context, ProductDetailsPage());
-                    Get.to(ProductDetailsPage());
+                    // NavigationHelper.push(context, ProductListPage());
+                    Get.to(ProductListPage());
                   },
                 ),
+
+                // _buildDrawerItem(
+                //   icon: Icons.receipt_long,
+                //   text: 'Product details'.tr,
+                //   onTap: () {
+                //     // NavigationHelper.push(context, ProductDetailsPage());
+                //     Get.to(ProductDetailsPage());
+                //   },
+                // ),
               ],
             ),
           ),
