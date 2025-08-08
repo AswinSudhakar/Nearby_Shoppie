@@ -89,7 +89,27 @@ SnackBar and Dialogues=======>>>>
 
 
 
+translation====>>>
 
+                  class MyTranslations extends Translations {
+                    @override
+                    Map<String, Map<String, String>> get keys => {
+                      'en_US': {
+                        'app_title': 'My Shopping App',
+                        'welcome': 'Welcome',
+                        'cart': 'Cart',
+                        'checkout': 'Checkout',
+                        'total': 'Total',
+                      },
 
+                      'ml_IN': {
+                        'app_title': 'എന്റെ ഷോപ്പിംഗ് ആപ്പ്',
+                        'welcome': 'സ്വാഗതം',
+                        'cart': 'കാർട്ട്',
+                        'checkout': 'ചെക്ക്‌ഔട്ട്',
+                        'total': 'ആകെ',
+                      },
+                    };
+                  }
 
                   */
