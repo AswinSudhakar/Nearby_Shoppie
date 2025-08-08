@@ -148,13 +148,42 @@ class _RegisterPageState extends State<RegisterPage> {
                 width: 190,
                 label: "Register",
                 fontfamily: 'first',
-                onPressed: () =>
-                    // NavigationHelper.push(context, HomePage()),
-                    Get.to(
-                      LoginPage(),
-                      transition: Transition.leftToRight,
-                      duration: Duration(seconds: 1),
+                onPressed: () {
+                  Get.to(
+                    LoginPage(),
+                    transition: Transition.leftToRight,
+                    duration: Duration(seconds: 1),
+                  );
+                  Get.bottomSheet(
+                    elevation: 10,
+                    SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 128, 235, 132),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          height: 50,
+                          width: 300,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomText(text: 'Registration Successful!'),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
+                  );
+                  Future.delayed(Duration(seconds: 2), () {
+                    if (Get.isBottomSheetOpen ?? false) {
+                      Get.back();
+                    }
+                  });
+                },
+
+                // NavigationHelper.push(context, HomePage()),
               ),
               SizedBox(height: 40),
               TextButton(

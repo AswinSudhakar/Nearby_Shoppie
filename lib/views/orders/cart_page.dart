@@ -70,6 +70,7 @@ class _CartState extends State<Cart> {
                 width: 300,
                 height: 40,
                 child: TextField(
+                  readOnly: true,
                   decoration: InputDecoration(
                     hintText: 'Select Date',
                     prefixIcon: Icon(Icons.calendar_month),
