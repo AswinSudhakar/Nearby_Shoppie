@@ -4,7 +4,7 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/product/product/product_details_page.dart';
 
 class ProductListPage extends StatefulWidget {
-  const ProductListPage({super.key, required this.categoryname});
+  const ProductListPage({super.key, this.categoryname});
   final String? categoryname;
   @override
   State<ProductListPage> createState() => _ProductListPageState();

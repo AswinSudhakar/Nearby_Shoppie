@@ -134,14 +134,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
 
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  TextButton(onPressed: () {}, child: Text('Forgot Password?')),
-                ],
-              ),
-
               SizedBox(height: 45),
               CustomElevatedButton(
                 backgroundColor: Colors.greenAccent,

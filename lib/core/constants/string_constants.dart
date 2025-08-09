@@ -1,0 +1,36 @@
+class AppStrings {
+  static const String appTitle = 'Nearby Shoppiee';
+  static const String profile = 'Profile';
+  static const String welcome = 'welcome';
+  static const String cart = 'Cart';
+  static const String myAddress = 'My Address';
+  static const String myOrders = 'My Orders';
+  static const String checkout = 'checkout';
+  static const String productListPage = 'Product list page';
+  static const String productDetails = 'Product details';
+  static const String logout = 'Logout';
+  static const String total = 'total';
+  static const String chats = 'Chats';
+  static const String login = 'login';
+  static const String forgotPassword = 'forgot password';
+  static const String dontHaveAccount = 'donthave an account';
+  static const String fullName = 'Full Name';
+  static const String email = 'Email';
+  static const String phone = 'Phone';
+  static const String password = 'Password';
+  static const String selectAudioLanguage = 'Select Audio Language';
+  static const String loginSuccessful = 'Login Successful';
+  static const String registerSuccessful = 'Registration Successful';
+  static const String shopByCategory = 'Shop By category';
+  static const String shopsNearby = 'Shops Nearby';
+  static const String yourLocation = 'Your Location';
+  static const String editProfile = 'Edit profile';
+  static const String ongoing = 'Ongoing';
+  static const String completed = 'Completed';
+  static const String products = 'Products';
+  static const String addMoreProducts = 'Add More Products';
+  static const String expectedDateTime = 'Expected Date&Time';
+  static const String deliveryLocation = 'Delivery Location';
+  static const String placeOrder = 'Place Order';
+  static const String chatWithUs = 'Chat with us';
+}
