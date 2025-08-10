@@ -27,7 +27,7 @@ class MyTranslations extends Translations {
       'Select Audio Language': 'Select Audio Language',
       'Login Successful': 'Login Successful',
       'Registration Successful': 'Registration Successful',
-
+      'Add New Address': 'Add New Address',
       'Shop By category': 'Shop By Category',
       'Shops Nearby': 'Shops Nearby',
       'Your Location': 'Your Location',
@@ -78,6 +78,7 @@ class MyTranslations extends Translations {
       'Delivery Location': 'ഡെലിവറി സ്ഥലം',
       'Place Order': 'ഓർഡർ നൽകുക',
       'Chat with us': 'ഞങ്ങളോടൊപ്പം ചാറ്റ് ചെയ്യുക',
+      'Add New Address': 'പുതിയ വിലാസം ചേർക്കുക',
     },
   };
 }

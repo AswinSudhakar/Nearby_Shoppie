@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 

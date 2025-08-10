@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/core/widgets/text_form_field.dart';
@@ -103,7 +104,7 @@ class LoginPage extends StatelessWidget {
                 fontfamily: 'first',
                 onPressed: () {
                   Get.to(
-                    MainScreen(),
+                    () => MainScreen(),
                     transition: Transition.leftToRightWithFade,
                     duration: Duration(seconds: 1),
                   );
@@ -116,7 +117,9 @@ class LoginPage extends StatelessWidget {
                     ),
                     messageText: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [CustomText(text: 'Login Successful')],
+                      children: [
+                        CustomText(text: AppStrings.loginSuccessful.tr),
+                      ],
                     ),
                     snackPosition: SnackPosition.BOTTOM,
                     margin: const EdgeInsets.only(
@@ -137,7 +140,7 @@ class LoginPage extends StatelessWidget {
                 onPressed: () {
                   // NavigationHelper.push(context, RegisterPage());
                   Get.to(
-                    RegisterPage(),
+                    () => RegisterPage(),
                     transition: Transition.leftToRightWithFade,
                     duration: Duration(seconds: 1),
                   );

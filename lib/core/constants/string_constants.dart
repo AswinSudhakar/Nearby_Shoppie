@@ -33,4 +33,5 @@ class AppStrings {
   static const String deliveryLocation = 'Delivery Location';
   static const String placeOrder = 'Place Order';
   static const String chatWithUs = 'Chat with us';
+  static const String addnewaddress = 'Add New Address';
 }

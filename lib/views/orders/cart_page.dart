@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/home/home_page.dart';
 import 'package:nearby_shoppiee/views/product/category/categories_page.dart';
-import 'package:nearby_shoppiee/views/product/product/product_list_page.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -33,7 +32,7 @@ class _CartState extends State<Cart> {
     return Scaffold(
       appBar: AppBar(
         title: CustomText(
-          text: "My Bag",
+          text: AppStrings.cart.tr,
           fontSize: 25,
           fontFamily: 'Crimson-Bold',
         ),
@@ -44,7 +43,7 @@ class _CartState extends State<Cart> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CustomText(text: "Products", fontSize: 25),
+              CustomText(text: AppStrings.products.tr, fontSize: 25),
               SizedBox(
                 height: 450,
                 child: Flexible(
@@ -64,14 +63,14 @@ class _CartState extends State<Cart> {
               SizedBox(height: 10),
 
               CustomElevatedButton(
-                label: 'Add More Products',
+                label: AppStrings.addMoreProducts.tr,
                 onPressed: () {
-                  Get.to(CategoriesPage());
+                  Get.to(() => CategoriesPage());
                 },
                 backgroundColor: const Color.fromARGB(255, 136, 231, 139),
               ),
               SizedBox(height: 10),
-              CustomText(text: 'Expected Date&Time', fontSize: 25),
+              CustomText(text: AppStrings.expectedDateTime.tr, fontSize: 25),
               SizedBox(height: 10),
               SizedBox(
                 width: 300,
@@ -103,7 +102,7 @@ class _CartState extends State<Cart> {
                 }).toList(),
               ),
               SizedBox(height: 10),
-              CustomText(text: 'Delivery Location', fontSize: 25),
+              CustomText(text: AppStrings.deliveryLocation.tr, fontSize: 25),
               SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -162,7 +161,7 @@ class _CartState extends State<Cart> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CustomElevatedButton(
-                  label: 'Place Order',
+                  label: AppStrings.placeOrder.tr,
                   width: double.infinity,
                   onPressed: () {
                     Get.off(HomePage());

@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _navigate_screen() async {
     await Future.delayed(Duration(seconds: 4));
     Get.to(
-      AuthHome(),
+      () => AuthHome(),
       transition: Transition.zoom,
       duration: Duration(seconds: 1),
     );

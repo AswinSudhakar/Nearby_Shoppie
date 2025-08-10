@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
+import 'package:nearby_shoppiee/views/home/home_page.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
@@ -15,13 +18,13 @@ class EditProfilePage extends StatelessWidget {
 
           backgroundColor: Colors.greenAccent,
           onPressed: () {
-            NavigationHelper.push(context, EditProfilePage());
+            Get.to(() => HomePage());
           },
         ),
       ),
       appBar: AppBar(
         title: CustomText(
-          text: "Edit Profile",
+          text: AppStrings.editProfile.tr,
           fontSize: 25,
           fontFamily: 'Crimson-Bold',
         ),

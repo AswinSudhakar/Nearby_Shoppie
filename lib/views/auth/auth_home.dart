@@ -25,7 +25,7 @@ class AuthHome extends StatelessWidget {
               onPressed: () {
                 // NavigationHelper.push(context, LoginPage());
                 Get.to(
-                  LoginPage(),
+                  () => LoginPage(),
                   transition: Transition.fade,
                   duration: Duration(seconds: 1),
                 );
@@ -40,7 +40,7 @@ class AuthHome extends StatelessWidget {
               onPressed: () {
                 // NavigationHelper.push(context, RegisterPage());
                 Get.to(
-                  RegisterPage(),
+                  () => RegisterPage(),
                   transition: Transition.fade,
                   duration: Duration(seconds: 1),
                 );

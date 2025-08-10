@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/core/widgets/text_form_field.dart';
@@ -142,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 fontfamily: 'first',
                 onPressed: () {
                   Get.to(
-                    LoginPage(),
+                    () => LoginPage(),
                     transition: Transition.leftToRight,
                     duration: Duration(seconds: 1),
                   );
@@ -161,7 +162,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              CustomText(text: 'Registration Successful!'),
+                              CustomText(
+                                text: AppStrings.registerSuccessful.tr,
+                              ),
                             ],
                           ),
                         ),
@@ -181,7 +184,7 @@ class _RegisterPageState extends State<RegisterPage> {
               TextButton(
                 onPressed: () {
                   // NavigationHelper.push(context, LoginPage());
-                  Get.to(LoginPage());
+                  Get.to(() => LoginPage());
                 },
                 child: Text(
                   ' have an Account? Sign-in',

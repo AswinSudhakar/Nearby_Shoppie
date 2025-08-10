@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
@@ -12,14 +14,16 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: CustomElevatedButton(
-          label: 'Edit Profile',
+          label: AppStrings.editProfile.tr,
           backgroundColor: Colors.greenAccent,
           onPressed: () {
             NavigationHelper.push(context, EditProfilePage());
           },
         ),
       ),
-      appBar: AppBar(title: CustomText(text: 'Profile', fontSize: 25)),
+      appBar: AppBar(
+        title: CustomText(text: AppStrings.profile.tr, fontSize: 25),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(15.0),

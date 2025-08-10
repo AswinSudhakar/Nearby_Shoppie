@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 
@@ -10,12 +12,14 @@ class MyAddressPage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: CustomElevatedButton(
-          label: 'Add New Address',
+          label: AppStrings.addnewaddress.tr,
           backgroundColor: Colors.greenAccent,
           onPressed: () {},
         ),
       ),
-      appBar: AppBar(title: CustomText(text: 'My Address', fontSize: 25)),
+      appBar: AppBar(
+        title: CustomText(text: AppStrings.myAddress.tr, fontSize: 25),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
