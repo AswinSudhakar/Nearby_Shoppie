@@ -3,9 +3,13 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 
 class CategorywiseProductsPage extends StatelessWidget {
   final String category;
-  IconData? icon;
+  final IconData? icon;
 
-  CategorywiseProductsPage({super.key, required this.category, this.icon});
+  const CategorywiseProductsPage({
+    super.key,
+    required this.category,
+    this.icon,
+  });
 
   final List<Map<String, String>> products = const [
     {"name": "Tea Powder", "price": "77", "offerPrice": "45"},

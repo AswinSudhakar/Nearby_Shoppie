@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
+import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/home/notification_page.dart';
@@ -147,6 +148,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             SizedBox(height: 20),
+            Divider(thickness: 1, color: Colors.grey[300]),
 
             //Horizondal Nearby Shops List
             Column(
@@ -208,6 +210,92 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                 ),
+                SizedBox(height: 10),
+              ],
+            ),
+            Divider(thickness: 1, color: Colors.grey[300]),
+
+            //Whats New Section
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(text: 'Whats New', fontSize: 20),
+                      TextButton(
+                        onPressed: () {},
+                        child: CustomText(text: 'View More', fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    double itemHeight = 270; // height for each grid item
+                    return GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio:
+                            constraints.maxWidth / (itemHeight * 2),
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                      ),
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: 16,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(15),
+                                ),
+                                child: Image.network(
+                                  'https://2.wlimg.com/product_images/bc-full/2022/9/10844391/cold-pressed-virgin-coconut-oil-1663134672-6537817.jpeg',
+                                  width: double.infinity,
+                                  height: 150,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Text(
+                                'Product ${index + 1}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              CustomText(text: '₹200', fontSize: 16),
+                              CustomElevatedButton(
+                                backgroundColor: const Color.fromARGB(
+                                  255,
+                                  133,
+                                  238,
+                                  187,
+                                ),
+                                width: 140,
+                                height: 40,
+                                label: 'Add To Cart',
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           ],
@@ -216,3 +304,60 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+/*
+child: SizedBox(
+                        height: 170,
+                        width: 70,
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                'https://2.wlimg.com/product_images/bc-full/2022/9/10844391/cold-pressed-virgin-coconut-oil-1663134672-6537817.jpeg',
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+
+                            // Product Details
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Product Name ${index + 1}',
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    "50 ",
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.orange,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    child: const Text("Add to Cart"),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+*/

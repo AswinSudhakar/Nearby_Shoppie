@@ -191,10 +191,6 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double original = double.tryParse(price) ?? 0;
-    final double offer = double.tryParse(offerPrice) ?? 0;
-    final int discount = ((1 - (offer / original)) * 100).round();
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Card(
