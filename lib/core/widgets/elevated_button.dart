@@ -44,13 +44,15 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: icon == null
-            ? Text(
-                label,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Crimson-Bold',
-                  fontSize: 19,
-                  color: labelColor,
+            ? FittedBox(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Crimson-Bold',
+                    fontSize: 19,
+                    color: labelColor,
+                  ),
                 ),
               )
             : Row(

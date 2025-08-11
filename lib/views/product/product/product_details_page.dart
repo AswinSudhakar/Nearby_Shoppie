@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 
 class ProductDetailsPage extends StatelessWidget {
-  String? name;
-  int? price;
-  String? image;
+  final String? name;
+  final int? price;
+  final String? image;
 
   ProductDetailsPage({super.key, this.name, this.price, this.image});
 
