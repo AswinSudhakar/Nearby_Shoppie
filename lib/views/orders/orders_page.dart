@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/orders/tabs/completed_orders.dart';
 import 'package:nearby_shoppiee/views/orders/tabs/ongoing_orders.dart';
@@ -13,7 +15,7 @@ class OrdersPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: CustomText(
-            text: "Orders",
+            text: AppStrings.myOrders.tr,
             fontSize: 25,
             fontFamily: 'Crimson-Bold',
           ),
@@ -22,8 +24,8 @@ class OrdersPage extends StatelessWidget {
           children: [
             TabBar(
               tabs: [
-                Tab(child: Text('Ongoing')),
-                Tab(child: Text('Completed')),
+                Tab(child: Text(AppStrings.ongoing.tr)),
+                Tab(child: Text(AppStrings.completed.tr)),
               ],
             ),
             Expanded(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
 
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/home/more_page.dart';
 import 'package:nearby_shoppiee/views/home/notification_page.dart';
 import 'package:nearby_shoppiee/views/home/search_page.dart';
 import 'package:nearby_shoppiee/views/product/category/category_wise_productlist_page.dart';
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
         // leading: IconButton(
         //   onPressed: () {
         //     // NavigationHelper.push(context, MorePage());
-        //     Get.to(MorePage());
+        //     Get.to(()=>MorePage());
         //   },
         //   icon: Icon(Icons.menu),
         // ),
@@ -39,14 +39,14 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             onPressed: () {
               // NavigationHelper.push(context, SearchPage());
-              Get.to(SearchPage());
+              Get.to(() => SearchPage());
             },
             icon: Icon(Icons.search),
           ),
           IconButton(
             onPressed: () {
               // NavigationHelper.push(context, NotificationPage());
-              Get.to(NotificationPage());
+              Get.to(() => NotificationPage());
             },
             icon: Icon(Icons.notifications),
           ),
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CustomText(text: 'Your Location'),
+                            CustomText(text: AppStrings.yourLocation.tr),
                             FittedBox(
                               child: CustomText(
                                 text: 'Abc Home ,Thaliyil, Kannur ',
@@ -95,7 +95,10 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   children: [
                     SizedBox(width: 10),
-                    CustomText(text: 'Shop By Category', fontSize: 20),
+                    CustomText(
+                      text: AppStrings.shopByCategory.tr,
+                      fontSize: 20,
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -115,7 +118,8 @@ class _HomePageState extends State<HomePage> {
                             //   CategorywiseProductsPage(category: category),
                             // ),
                             Get.to(
-                              CategorywiseProductsPage(category: category),
+                              () =>
+                                  CategorywiseProductsPage(category: category),
                             ),
                         child: Card(
                           child: Column(
@@ -150,7 +154,10 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: CustomText(text: 'Shops Nearby', fontSize: 20),
+                  child: CustomText(
+                    text: AppStrings.shopsNearby.tr,
+                    fontSize: 20,
+                  ),
                 ),
                 SizedBox(height: 10),
                 SizedBox(

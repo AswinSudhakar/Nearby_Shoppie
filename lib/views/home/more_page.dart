@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/auth/login_page.dart';
 import 'package:nearby_shoppiee/views/chat/chat_page.dart';
 import 'package:nearby_shoppiee/views/orders/cart_page.dart';
 import 'package:nearby_shoppiee/views/orders/orders_page.dart';
-import 'package:nearby_shoppiee/views/product/product/product_details_page.dart';
 import 'package:nearby_shoppiee/views/product/product/product_list_page.dart';
 import 'package:nearby_shoppiee/views/profile/profile_page.dart';
 import 'package:nearby_shoppiee/views/profile/my_address_page.dart';
@@ -76,43 +76,43 @@ class MorePage extends StatelessWidget {
               children: [
                 _buildDrawerItem(
                   icon: Icons.person,
-                  text: 'Profile'.tr,
+                  text: AppStrings.profile.tr,
                   onTap: () {
                     // NavigationHelper.push(context, ProfilePage());
-                    Get.to(ProfilePage());
+                    Get.to(() => ProfilePage());
                   },
                 ),
 
                 _buildDrawerItem(
                   icon: Icons.location_on,
-                  text: 'My Address'.tr,
+                  text: AppStrings.myAddress.tr,
                   onTap: () {
                     // NavigationHelper.push(context, MyAddressPage());
-                    Get.to(MyAddressPage());
+                    Get.to(() => MyAddressPage());
                   },
                 ),
                 _buildDrawerItem(
                   icon: Icons.receipt_long,
-                  text: 'My Orders'.tr,
+                  text: AppStrings.myOrders.tr,
                   onTap: () {
                     // NavigationHelper.push(context, OrdersPage());
-                    Get.to(OrdersPage());
+                    Get.to(() => OrdersPage());
                   },
                 ),
                 _buildDrawerItem(
                   icon: Icons.shopping_bag,
-                  text: 'Cart'.tr,
+                  text: AppStrings.cart.tr,
                   onTap: () {
                     // NavigationHelper.push(context, Cart());
-                    Get.to(Cart());
+                    Get.to(() => Cart());
                   },
                 ),
 
                 _buildDrawerItem(
                   icon: Icons.chat,
-                  text: 'Chats'.tr,
+                  text: AppStrings.chats.tr,
                   onTap: () {
-                    Get.to(ChatPage());
+                    Get.to(() => ChatPage());
                   },
                 ),
                 // _buildDrawerItem(
@@ -125,11 +125,12 @@ class MorePage extends StatelessWidget {
                 // ),
                 _buildDrawerItem(
                   icon: Icons.logout,
-                  text: 'Logout'.tr,
+                  text: AppStrings.logout.tr,
                   onTap: () {
-                    Get.to(LoginPage());
+                    Get.offAll(() => LoginPage());
                   },
                 ),
+
                 // _buildDrawerItem(
                 //   icon: Icons.category,
                 //   text: 'categories',
@@ -137,13 +138,12 @@ class MorePage extends StatelessWidget {
                 //     NavigationHelper.push(context, CategoriesPage());
                 //   },
                 // ),
-
                 _buildDrawerItem(
                   icon: Icons.receipt_long,
-                  text: 'Product list page'.tr,
+                  text: AppStrings.productListPage.tr,
                   onTap: () {
                     // NavigationHelper.push(context, ProductListPage());
-                    Get.to(ProductListPage());
+                    Get.to(() => ProductListPage());
                   },
                 ),
 

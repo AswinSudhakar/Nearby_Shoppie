@@ -18,7 +18,7 @@ class ShopListPage extends StatelessWidget {
           backgroundColor: Colors.greenAccent,
           onPressed: () {
             // NavigationHelper.push(context, AddShopPage());
-            Get.to(AddShopPage());
+            Get.to(() => AddShopPage());
           },
         ),
       ),
@@ -83,7 +83,7 @@ class ShopListPage extends StatelessWidget {
             InkWell(
               onTap: () {
                 // NavigationHelper.push(context, IndividualShopPage(name: name));
-                Get.to(IndividualShopPage(name: name));
+                Get.to(() => IndividualShopPage(name: name));
               },
               child: ListTile(
                 title: CustomText(text: name, fontSize: 23),

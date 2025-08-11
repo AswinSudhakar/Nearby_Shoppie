@@ -50,7 +50,7 @@ class CategoriesPage extends StatelessWidget {
                 //   //   icon: category["icon"],
                 //   // ),
                 // );
-                Get.to(ProductListPage(categoryname: category['name']));
+                Get.to(() => ProductListPage(categoryname: category['name']));
               },
               child: Card(
                 elevation: 4,
