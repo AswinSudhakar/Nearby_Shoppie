@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
+import 'package:nearby_shoppiee/views/profile/view/add_new_address_page.dart';
 
 class MyAddressPage extends StatelessWidget {
   const MyAddressPage({super.key});
@@ -14,7 +15,9 @@ class MyAddressPage extends StatelessWidget {
         child: CustomElevatedButton(
           label: AppStrings.addnewaddress.tr,
           backgroundColor: Colors.greenAccent,
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => AddNewAddressPage());
+          },
         ),
       ),
       appBar: AppBar(

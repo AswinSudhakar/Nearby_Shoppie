@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
+import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
 
 class CategorywiseProductsPage extends StatelessWidget {
-  final String category;
+  final Category category;
   final IconData? icon;
 
-  const CategorywiseProductsPage({
-    super.key,
-    required this.category,
-    this.icon,
-  });
+  CategorywiseProductsPage({super.key, required this.category, this.icon});
 
-  final List<Map<String, String>> products = const [
+  final List<Map<String, String>> productss = const [
     {"name": "Tea Powder", "price": "77", "offerPrice": "45"},
     {"name": "Bread (Brown)", "price": "40", "offerPrice": "32"},
     {"name": "Pickle (Mango)", "price": "60", "offerPrice": "55"},
@@ -27,6 +24,9 @@ class CategorywiseProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<ProductModel> filteredProducts = products
+        .where((product) => product.categoryId == category.id)
+        .toList();
     return Scaffold(
       appBar: AppBar(),
 
@@ -53,7 +53,7 @@ class CategorywiseProductsPage extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     CustomText(
-                      text: category,
+                      text: category.name,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
@@ -67,17 +67,16 @@ class CategorywiseProductsPage extends StatelessWidget {
             ),
 
             const SizedBox(height: 20),
-
             // Product List
             Expanded(
               child: ListView.builder(
-                itemCount: products.length,
+                itemCount: filteredProducts.length,
                 itemBuilder: (context, index) {
-                  final product = products[index];
+                  final product = filteredProducts[index];
                   return ProductCard(
-                    name: product["name"]!,
-                    price: product["price"]!,
-                    offerPrice: product["offerPrice"]!,
+                    name: product.name,
+                    price: product.price.toString(),
+                    offerPrice: product.price.toString(),
                   );
                 },
               ),

@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as GEt;
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
-import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
+import 'package:nearby_shoppiee/core/utils/navigation_helper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 
 import 'package:nearby_shoppiee/core/widgets/text.dart';
+import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
 import 'package:nearby_shoppiee/views/home/notification_page.dart';
 import 'package:nearby_shoppiee/views/home/search_page.dart';
-import 'package:nearby_shoppiee/views/product/category/category_wise_productlist_page.dart';
+import 'package:nearby_shoppiee/views/product/category/view/category_wise_productlist_page.dart';
+import 'package:nearby_shoppiee/views/product/product/controller/Product_controller.dart';
+import 'package:nearby_shoppiee/views/product/product/view/product_details_page.dart';
 import 'package:nearby_shoppiee/views/shop/individual/individual_shop_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,6 +22,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final productcontroller = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,9 +114,9 @@ class _HomePageState extends State<HomePage> {
                       crossAxisCount: 3,
                       childAspectRatio: 1, // Width to height ratio
                     ),
-                    itemCount: 18,
+                    itemCount: categories.length,
                     itemBuilder: (context, index) {
-                      final category = 'category ${index + 1}';
+                      final category = categories[index];
                       return InkWell(
                         onTap: () =>
                             // NavigationHelper.push(
@@ -137,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ),
-                              CustomText(text: category),
+                              CustomText(text: category.name),
                             ],
                           ),
                         ),
@@ -165,15 +170,16 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 220,
                   child: ListView.builder(
-                    itemCount: 7,
+                    itemCount: shops.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
+                      final Shop shop = shops[index];
                       return Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: GestureDetector(
                           onTap: () => NavigationHelper.push(
                             context,
-                            IndividualShopPage(name: 'Shop Name'),
+                            IndividualShopPage(shop: shop),
                           ),
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -198,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CustomText(
-                                    text: 'Shop Name',
+                                    text: shop.name,
                                     fontSize: 16,
                                   ),
                                 ),
@@ -237,62 +243,90 @@ class _HomePageState extends State<HomePage> {
                 LayoutBuilder(
                   builder: (context, constraints) {
                     double itemHeight = 270; // height for each grid item
-                    return GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio:
-                            constraints.maxWidth / (itemHeight * 2),
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
+                    return Obx(
+                      () => GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio:
+                              constraints.maxWidth / (itemHeight * 2),
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                        ),
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: productcontroller.productList.length,
+                        itemBuilder: (context, index) {
+                          final product = productcontroller.productList[index];
+
+                          return GestureDetector(
+                            onTap: () => Get.to(
+                              () => ProductDetailsPage(
+                                image: product.image,
+                                name: product.title,
+                                price: product.price,
+                              ),
+                            ),
+                            child: Card(
+                              elevation: 4,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(15),
+                                        topRight: Radius.circular(15),
+                                      ),
+                                      child: Image.network(
+                                        product.image,
+                                        width: double.infinity,
+                                        height: 150,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    Text(
+                                      overflow: TextOverflow.ellipsis,
+                                      product.title,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    CustomText(
+                                      text: '₹${product.price}',
+                                      fontSize: 16,
+                                    ),
+                                    CustomElevatedButton(
+                                      backgroundColor: const Color.fromARGB(
+                                        255,
+                                        133,
+                                        238,
+                                        187,
+                                      ),
+                                      width: 140,
+                                      height: 40,
+                                      label: 'Add To Cart',
+                                      onPressed: () {
+                                        Get.snackbar(
+                                          '',
+                                          '${product.title} added to cart',
+                                          snackPosition: SnackPosition.BOTTOM,
+                                          backgroundColor: Colors.green[100],
+                                          colorText: Colors.black,
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: 16,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          elevation: 4,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15),
-                                ),
-                                child: Image.network(
-                                  'https://2.wlimg.com/product_images/bc-full/2022/9/10844391/cold-pressed-virgin-coconut-oil-1663134672-6537817.jpeg',
-                                  width: double.infinity,
-                                  height: 150,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Text(
-                                'Product ${index + 1}',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              CustomText(text: '₹200', fontSize: 16),
-                              CustomElevatedButton(
-                                backgroundColor: const Color.fromARGB(
-                                  255,
-                                  133,
-                                  238,
-                                  187,
-                                ),
-                                width: 140,
-                                height: 40,
-                                label: 'Add To Cart',
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
-                        );
-                      },
                     );
                   },
                 ),

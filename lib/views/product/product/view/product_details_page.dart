@@ -4,7 +4,7 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   final String? name;
-  final int? price;
+  final String? price;
   final String? image;
 
   ProductDetailsPage({super.key, this.name, this.price, this.image});
@@ -32,32 +32,33 @@ class ProductDetailsPage extends StatelessWidget {
                   enableInfiniteScroll: true,
                   autoPlay: false,
                 ),
-                items: imageUrls
-                    .map(
-                      (item) => ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          item,
-                          fit: BoxFit.cover,
-                          width: double.infinity,
-                        ),
-                      ),
-                    )
-                    .toList(),
+                items: [Image.network('$image')],
+                // imageUrls
+                //     .map(
+                //       (item) => ClipRRect(
+                //         borderRadius: BorderRadius.circular(8),
+                //         child: Image.network(
+                //           item,
+                //           fit: BoxFit.cover,
+                //           width: double.infinity,
+                //         ),
+                //       ),
+                //     )
+                //     .toList(),
               ),
               SizedBox(height: 20),
-              CustomText(text: 'Product Name', fontSize: 25),
+              CustomText(text: '$name', fontSize: 25),
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
-                    text: '₹33',
+                    text: '₹$price',
                     fontSize: 27,
                     color: Colors.greenAccent,
                   ),
                   Text(
-                    '₹38',
+                    '₹$price',
                     style: const TextStyle(
                       fontSize: 16,
                       color: Colors.grey,

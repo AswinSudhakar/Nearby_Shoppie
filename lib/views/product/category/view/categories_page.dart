@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/product/product/product_list_page.dart';
+import 'package:nearby_shoppiee/views/product/product/view/product_list_page.dart';
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({super.key});

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/orders/tabs/completed_orders.dart';
-import 'package:nearby_shoppiee/views/orders/tabs/ongoing_orders.dart';
+import 'package:nearby_shoppiee/views/orders/view/tabs/completed_orders.dart';
+import 'package:nearby_shoppiee/views/orders/view/tabs/ongoing_orders.dart';
 
 class OrdersPage extends StatelessWidget {
   const OrdersPage({super.key});

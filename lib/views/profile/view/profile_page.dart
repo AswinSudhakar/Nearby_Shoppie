@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
-import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
+import 'package:nearby_shoppiee/core/utils/navigation_helper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/profile/edit_profile_page.dart';
+import 'package:nearby_shoppiee/views/profile/view/edit_profile_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

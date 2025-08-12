@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/auth/auth_home.dart';
+import 'package:nearby_shoppiee/views/auth/view/auth_home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

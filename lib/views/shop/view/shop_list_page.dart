@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/shop/add_shop_page.dart';
+import 'package:nearby_shoppiee/views/shop/view/add_shop_page.dart';
 import 'package:nearby_shoppiee/views/shop/individual/individual_shop_page.dart';
 
 class ShopListPage extends StatelessWidget {
@@ -83,7 +83,7 @@ class ShopListPage extends StatelessWidget {
             InkWell(
               onTap: () {
                 // NavigationHelper.push(context, IndividualShopPage(name: name));
-                Get.to(() => IndividualShopPage(name: name));
+                Get.to(() => IndividualShopPage());
               },
               child: ListTile(
                 title: CustomText(text: name, fontSize: 23),

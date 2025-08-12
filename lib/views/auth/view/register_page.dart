@@ -4,7 +4,7 @@ import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/core/widgets/text_form_field.dart';
-import 'package:nearby_shoppiee/views/auth/login_page.dart';
+import 'package:nearby_shoppiee/views/auth/view/login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -142,7 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 label: "Register",
                 fontfamily: 'first',
                 onPressed: () {
-                  Get.to(
+                  Get.off(
                     () => LoginPage(),
                     transition: Transition.leftToRight,
                     duration: Duration(seconds: 1),

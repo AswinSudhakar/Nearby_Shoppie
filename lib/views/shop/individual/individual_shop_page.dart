@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
+import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
 
 class IndividualShopPage extends StatelessWidget {
-  final String name;
-  const IndividualShopPage({super.key, required this.name});
+  final Shop? shop;
+  const IndividualShopPage({super.key, this.shop});
 
   @override
   Widget build(BuildContext context) {
@@ -15,23 +17,39 @@ class IndividualShopPage extends StatelessWidget {
         child: ListView(
           children: [
             SizedBox(
-              height: 40,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage: NetworkImage(
-                          'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-                        ),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 30,
+                            backgroundImage: NetworkImage(
+                              'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+                            ),
+                          ),
+                          CustomText(text: shop!.name, fontSize: 25),
+                        ],
                       ),
-                      CustomText(text: name, fontSize: 25),
+
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.filter_list),
+                      ),
                     ],
                   ),
-
-                  IconButton(onPressed: () {}, icon: Icon(Icons.filter_list)),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: CustomText(
+                          text: shop!.description,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -120,13 +138,17 @@ class IndividualShopPage extends StatelessWidget {
               SizedBox(width: 16),
 
               // Product Info
-              Expanded(
+              Flexible(
+                fit: FlexFit.loose,
                 child: Column(
+                  // mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     // Title
                     CustomText(
-                      text: 'Blablablablabla',
+                      text: 'Product',
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
@@ -172,6 +194,15 @@ class IndividualShopPage extends StatelessWidget {
                           ),
                         ),
                       ],
+                    ),
+
+                    CustomElevatedButton(
+                      backgroundColor: const Color.fromARGB(255, 132, 231, 183),
+                      width: 140,
+                      height: 40,
+                      label: 'Add To Cart',
+                      textColor: Colors.black,
+                      onPressed: () {},
                     ),
                   ],
                 ),
