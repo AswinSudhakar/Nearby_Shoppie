@@ -37,13 +37,13 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
 
-              _CustomProfileField(
+              _customProfileField(
                 title: 'Full Name',
                 subtitle: 'Aswin Thaliyil',
                 icon: Icons.person_4_outlined,
               ),
 
-              _CustomProfileField(
+              _customProfileField(
                 title: 'Phone',
                 subtitle: '+91 123456789',
                 icon: Icons.phone,
@@ -55,7 +55,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _CustomProfileField({
+  Widget _customProfileField({
     required title,
     required subtitle,
     required icon,

@@ -7,7 +7,6 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/core/widgets/text_form_field.dart';
 import 'package:nearby_shoppiee/views/auth/view/register_page.dart';
 import 'package:nearby_shoppiee/views/home/main_landing_page.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -142,7 +141,6 @@ class LoginPage extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   // NavigationHelper.push(context, RegisterPage());
-                  print(MediaQuery.of(context).size);
                   Get.to(
                     () => RegisterPage(),
                     transition: Transition.leftToRightWithFade,

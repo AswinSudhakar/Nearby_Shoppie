@@ -1,96 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/utils/snackbarhelper.dart';
+import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
+import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
 import 'package:nearby_shoppiee/views/product/product/view/product_details_page.dart';
 
 class ProductListPage extends StatefulWidget {
-  const ProductListPage({super.key, this.categoryname});
-  final String? categoryname;
+  const ProductListPage({super.key, required this.category});
+  final Category category;
   @override
   State<ProductListPage> createState() => _ProductListPageState();
 }
 
 class _ProductListPageState extends State<ProductListPage> {
-  final List<Map<String, dynamic>> products = [
-    {
-      "name": "Radhuni Shemai - 200 gm - 4-2-15-VD-SQ",
-      "price": 60,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Cheese Puffs Chips - 22 gm",
-      "price": 700,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Nescafe Classic Coffee Jar – 50gm",
-      "price": 25,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Akher Chini (Deshi Sugar) – 1kg",
-      "price": 30,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Radhuni Shemai - 200 gm - 4-2-15-VD-SQ",
-      "price": 60,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Cheese Puffs Chips - 22 gm",
-      "price": 700,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Nescafe Classic Coffee Jar – 50gm",
-      "price": 25,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Akher Chini (Deshi Sugar) – 1kg",
-      "price": 30,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Radhuni Shemai - 200 gm - 4-2-15-VD-SQ",
-      "price": 60,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Cheese Puffs Chips - 22 gm",
-      "price": 700,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Nescafe Classic Coffee Jar – 50gm",
-      "price": 25,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-    {
-      "name": "Akher Chini (Deshi Sugar) – 1kg",
-      "price": 30,
-      "image":
-          "https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<ProductModel> productlist = products
+        .where((element) => element.categoryId == widget.category.id)
+        .toList();
     return Scaffold(
       appBar: AppBar(
-        title: CustomText(text: '${widget.categoryname}', fontSize: 25),
+        title: CustomText(text: widget.category.name, fontSize: 25),
         leading: const BackButton(),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -99,7 +30,7 @@ class _ProductListPageState extends State<ProductListPage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
-          itemCount: products.length,
+          itemCount: productlist.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 0.62,
@@ -107,7 +38,7 @@ class _ProductListPageState extends State<ProductListPage> {
             mainAxisSpacing: 10,
           ),
           itemBuilder: (context, index) {
-            final product = products[index];
+            final product = productlist[index];
             return InkWell(
               onTap: () =>
                   //  NavigationHelper.push(
@@ -118,112 +49,172 @@ class _ProductListPageState extends State<ProductListPage> {
                   //     price: product["price"],
                   //   ),
                   // ),
-                  Get.to(
-                    ProductDetailsPage(
-                      name: product["name"],
-                      image: product["image"],
-                      price: product["price"],
-                    ),
-                  ),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Colors.grey.shade100,
+                  Get.to(ProductDetailsPage(product: product)),
+
+              // child: Container(
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(12),
+              //     color: Colors.grey.shade100,
+              //   ),
+              //   padding: const EdgeInsets.all(8),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Center(
+              //         child: Image.network(
+              //           product.image,
+              //           height: 100,
+              //           width: 100,
+              //           fit: BoxFit.contain,
+              //         ),
+              //       ),
+              //       const SizedBox(height: 10),
+              //       Text(
+              //         product.name,
+              //         maxLines: 2,
+              //         overflow: TextOverflow.ellipsis,
+              //         style: const TextStyle(fontSize: 14),
+              //       ),
+              //       const SizedBox(height: 6),
+              //       Text(
+              //         product.price.toString(),
+              //         style: const TextStyle(
+              //           fontWeight: FontWeight.bold,
+              //           color: Colors.orange,
+              //           fontSize: 16,
+              //         ),
+              //       ),
+              //       const SizedBox(height: 8),
+              //       SizedBox(
+              //         width: double.infinity,
+              //         child: ElevatedButton.icon(
+              //           onPressed: () {
+              //             ScaffoldMessenger.of(context).showSnackBar(
+              //               SnackBar(
+              //                 content: Text('${product.name} added to bag'),
+              //               ),
+              //             );
+
+              //             // Get.bottomSheet(
+              //             //   elevation: 10,
+              //             //   SafeArea(
+              //             //     child: Padding(
+              //             //       padding: const EdgeInsets.all(15.0),
+              //             //       child: Container(
+              //             //         decoration: BoxDecoration(
+              //             //           color: const Color.fromARGB(
+              //             //             255,
+              //             //             128,
+              //             //             235,
+              //             //             132,
+              //             //           ),
+              //             //           borderRadius: BorderRadius.circular(20),
+              //             //         ),
+              //             //         height: 50,
+              //             //         width: 300,
+              //             //         child: Column(
+              //             //           mainAxisAlignment: MainAxisAlignment.center,
+              //             //           children: [
+              //             //             CustomText(
+              //             //               text: '${product["name"]} added to bag',
+              //             //             ),
+              //             //           ],
+              //             //         ),
+              //             //       ),
+              //             //     ),
+              //             //   ),
+              //             // );
+              //             // Future.delayed(Duration(seconds: 2), () {
+              //             //   if (Get.isBottomSheetOpen ?? false) {
+              //             //     Get.back();
+              //             //   }
+              //             // });
+
+              //             // Get.snackbar(
+              //             //   '',
+              //             //   '${product["name"]} added to bag',
+              //             //   padding: EdgeInsets.all(8),
+              //             //   margin: const EdgeInsets.only(
+              //             //     bottom: 20,
+              //             //     right: 50,
+              //             //     left: 50,
+              //             //   ),
+              //             // );
+              //           },
+              //           style: ElevatedButton.styleFrom(
+              //             backgroundColor: Colors.green,
+              //             minimumSize: const Size.fromHeight(35),
+              //             shape: RoundedRectangleBorder(
+              //               borderRadius: BorderRadius.circular(6),
+              //             ),
+              //           ),
+              //           icon: const Icon(Icons.shopping_bag_outlined, size: 18),
+              //           label: const Text('Add To Bag'),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              child: Card(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
                 ),
-                padding: const EdgeInsets.all(8),
+                elevation: 3,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize:
+                      MainAxisSize.min, // ✅ Important: prevents overflow
+
                   children: [
-                    Center(
+                    ClipRRect(
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(15),
+                      ),
                       child: Image.network(
-                        product["image"],
-                        height: 100,
-                        width: 100,
-                        fit: BoxFit.contain,
+                        product.image,
+                        height: 139,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      product["name"],
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      "${product["price"]}",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.orange,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('${product["name"]} added to bag'),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize
+                            .min, // ✅ Ensures it only takes needed height
+
+                        children: [
+                          Text(
+                            product.name,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
                             ),
-                          );
-
-                          // Get.bottomSheet(
-                          //   elevation: 10,
-                          //   SafeArea(
-                          //     child: Padding(
-                          //       padding: const EdgeInsets.all(15.0),
-                          //       child: Container(
-                          //         decoration: BoxDecoration(
-                          //           color: const Color.fromARGB(
-                          //             255,
-                          //             128,
-                          //             235,
-                          //             132,
-                          //           ),
-                          //           borderRadius: BorderRadius.circular(20),
-                          //         ),
-                          //         height: 50,
-                          //         width: 300,
-                          //         child: Column(
-                          //           mainAxisAlignment: MainAxisAlignment.center,
-                          //           children: [
-                          //             CustomText(
-                          //               text: '${product["name"]} added to bag',
-                          //             ),
-                          //           ],
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // );
-                          // Future.delayed(Duration(seconds: 2), () {
-                          //   if (Get.isBottomSheetOpen ?? false) {
-                          //     Get.back();
-                          //   }
-                          // });
-
-                          // Get.snackbar(
-                          //   '',
-                          //   '${product["name"]} added to bag',
-                          //   padding: EdgeInsets.all(8),
-                          //   margin: const EdgeInsets.only(
-                          //     bottom: 20,
-                          //     right: 50,
-                          //     left: 50,
-                          //   ),
-                          // );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
-                          minimumSize: const Size.fromHeight(35),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6),
                           ),
-                        ),
-                        icon: const Icon(Icons.shopping_bag_outlined, size: 18),
-                        label: const Text('Add To Bag'),
+                          const SizedBox(height: 4),
+                          CustomText(text: '₹${product.price}', fontSize: 16),
+                          const SizedBox(height: 8),
+                          SizedBox(
+                            height: 40,
+                            child: CustomElevatedButton(
+                              backgroundColor: const Color.fromARGB(
+                                255,
+                                133,
+                                238,
+                                187,
+                              ),
+                              label: 'Add To Cart',
+                              onPressed: () {
+                                SnackBarHelper.show(
+                                  context,
+                                  message: '${product.name} added to cart',
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

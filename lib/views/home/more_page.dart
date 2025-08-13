@@ -138,14 +138,14 @@ class MorePage extends StatelessWidget {
                 //     NavigationHelper.push(context, CategoriesPage());
                 //   },
                 // ),
-                _buildDrawerItem(
-                  icon: Icons.receipt_long,
-                  text: AppStrings.productListPage.tr,
-                  onTap: () {
-                    // NavigationHelper.push(context, ProductListPage());
-                    Get.to(() => ProductListPage());
-                  },
-                ),
+                // _buildDrawerItem(
+                //   icon: Icons.receipt_long,
+                //   text: AppStrings.productListPage.tr,
+                //   onTap: () {
+                //     // NavigationHelper.push(context, ProductListPage());
+                //     Get.to(() => ProductListPage());
+                //   },
+                // ),
 
                 // _buildDrawerItem(
                 //   icon: Icons.receipt_long,

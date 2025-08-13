@@ -3,17 +3,30 @@
 
 Navigation=====>>>>
 
+Navigation to sam page with different values==>>
+                                                onTap: () { 
+                                                          print("Tapped: ${product1.name}");
+                                                          Get.to(() => 
+                                                          ProductDetailsPage(product: product1),
+                                                          preventDuplicates: false,
+                                                          );
+                                                          },
+
+
+
+
+==>>
                   Get.to(  MainScreen(),
                     transition: Transition.leftToRightWithFade,
                     duration: Duration(seconds: 1),
                   );
 
 
-                  Get.back();
+   ==>>               Get.back();
 
-                  Get.off(page());
+   ==>>               Get.off(page());
 
-                  Get.offAll(page());
+   ==>>                Get.offAll(page());
 
 
 namedRoutes==>>
@@ -25,14 +38,14 @@ namedRoutes==>>
 
                   ]
 
-                  Get.toNamed('/second');
-                  Get.offNamed(page());
-                  Get.offAllNamed(page());
+    ==>>              Get.toNamed('/second');
+     ==>>             Get.offNamed(page());
+    ==>>              Get.offAllNamed(page());
 
 
 SnackBar and Dialogues=======>>>>
 
-                  Get.snackbar(
+      ==>>            Get.snackbar(
                     '',
                     '',
                     titleText: Row(
@@ -56,7 +69,7 @@ SnackBar and Dialogues=======>>>>
 
 
 
-                   Get.bottomSheet(
+     ==>>              Get.bottomSheet(
                     elevation: 10,
                     SafeArea(
                       child: Padding(
@@ -78,7 +91,7 @@ SnackBar and Dialogues=======>>>>
                       ),
                     ),
                   );
-                  Future.delayed(Duration(seconds: 2), () {
+     ==>>             Future.delayed(Duration(seconds: 2), () {
                     if (Get.isBottomSheetOpen ?? false) {
                       Get.back();
                     }
@@ -86,7 +99,7 @@ SnackBar and Dialogues=======>>>>
 
 
 
-                  Get.defaultDialog(title: 'Alert Message',middleText: 'Successfully Registered');
+    ==>>              Get.defaultDialog(title: 'Alert Message',middleText: 'Successfully Registered');
 
 
 

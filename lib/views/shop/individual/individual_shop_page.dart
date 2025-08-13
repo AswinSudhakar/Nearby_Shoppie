@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:nearby_shoppiee/core/utils/snackbarhelper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
 
 class IndividualShopPage extends StatelessWidget {
-  final Shop? shop;
-  const IndividualShopPage({super.key, this.shop});
+  final Shop shop;
+  const IndividualShopPage({super.key, required this.shop});
 
   @override
   Widget build(BuildContext context) {
+    final List<ProductModel> productslist = products
+        .where((product) => product.shopId == shop.id)
+        .toList();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView(
+        child: Column(
           children: [
             SizedBox(
               child: Column(
@@ -26,11 +31,9 @@ class IndividualShopPage extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 30,
-                            backgroundImage: NetworkImage(
-                              'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-                            ),
+                            backgroundImage: NetworkImage(shop.profileImage),
                           ),
-                          CustomText(text: shop!.name, fontSize: 25),
+                          CustomText(text: shop.name, fontSize: 25),
                         ],
                       ),
 
@@ -43,10 +46,7 @@ class IndividualShopPage extends StatelessWidget {
                   Row(
                     children: [
                       Flexible(
-                        child: CustomText(
-                          text: shop!.description,
-                          fontSize: 18,
-                        ),
+                        child: CustomText(text: shop.description, fontSize: 18),
                       ),
                     ],
                   ),
@@ -75,45 +75,55 @@ class IndividualShopPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            _ProductBuider(name: 'Tea Powder', price: '77', offerprice: '45'),
-            _ProductBuider(
-              name: 'Bread (Brown)',
-              price: '40',
-              offerprice: '32',
-            ),
-            _ProductBuider(
-              name: 'Pickle (Mango)',
-              price: '60',
-              offerprice: '55',
-            ),
-            _ProductBuider(name: 'Maida', price: '67', offerprice: '50'),
-            _ProductBuider(name: 'Milk', price: '32', offerprice: '28'),
-            _ProductBuider(
-              name: 'Turmeric Powder',
-              price: '45',
-              offerprice: '37',
-            ),
-            _ProductBuider(name: 'Basmati Rice', price: '80', offerprice: '65'),
-            _ProductBuider(name: 'Onion', price: '25', offerprice: '22'),
-            _ProductBuider(
-              name: 'Coconut Oil',
-              price: '410',
-              offerprice: '380',
-            ),
 
-            _ProductBuider(name: 'Toothpaste', price: '89', offerprice: '49'),
-            _ProductBuider(
-              name: 'Floor Cleaner (Lizol)',
-              price: '257',
-              offerprice: '199',
+            Expanded(
+              child: ListView.builder(
+                itemCount: productslist.length,
+                itemBuilder: (context, index) {
+                  final product = productslist[index];
+                  return _productBuider(product: product);
+                },
+              ),
             ),
+            // _productBuider(name: 'Tea Powder', price: '77', offerprice: '45'),
+            // _productBuider(
+            //   name: 'Bread (Brown)',
+            //   price: '40',
+            //   offerprice: '32',
+            // ),
+            // _productBuider(
+            //   name: 'Pickle (Mango)',
+            //   price: '60',
+            //   offerprice: '55',
+            // ),
+            // _productBuider(name: 'Maida', price: '67', offerprice: '50'),
+            // _productBuider(name: 'Milk', price: '32', offerprice: '28'),
+            // _productBuider(
+            //   name: 'Turmeric Powder',
+            //   price: '45',
+            //   offerprice: '37',
+            // ),
+            // _productBuider(name: 'Basmati Rice', price: '80', offerprice: '65'),
+            // _productBuider(name: 'Onion', price: '25', offerprice: '22'),
+            // _productBuider(
+            //   name: 'Coconut Oil',
+            //   price: '410',
+            //   offerprice: '380',
+            // ),
+
+            // _productBuider(name: 'Toothpaste', price: '89', offerprice: '49'),
+            // _productBuider(
+            //   name: 'Floor Cleaner (Lizol)',
+            //   price: '257',
+            //   offerprice: '199',
+            // ),
           ],
         ),
       ),
     );
   }
 
-  Widget _ProductBuider({required name, required price, required offerprice}) {
+  Widget _productBuider({required ProductModel product}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -129,7 +139,7 @@ class IndividualShopPage extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                  'https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+                  product.image,
                   width: 120,
                   height: 120,
                   fit: BoxFit.cover,
@@ -148,7 +158,7 @@ class IndividualShopPage extends StatelessWidget {
                   children: [
                     // Title
                     CustomText(
-                      text: 'Product',
+                      text: product.name,
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
@@ -159,7 +169,7 @@ class IndividualShopPage extends StatelessWidget {
                       children: [
                         // Original Price
                         Text(
-                          price,
+                          product.price.toString(),
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.grey,
@@ -170,7 +180,7 @@ class IndividualShopPage extends StatelessWidget {
 
                         // Offer Price
                         CustomText(
-                          text: offerprice,
+                          text: (product.price * 0.9).toStringAsFixed(2),
                           fontSize: 17,
                           color: Colors.green.shade700,
                           fontWeight: FontWeight.bold,

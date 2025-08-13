@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/shop/view/add_shop_page.dart';
+import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
 import 'package:nearby_shoppiee/views/shop/individual/individual_shop_page.dart';
+import 'package:nearby_shoppiee/views/shop/view/add_shop_page.dart';
 
 class ShopListPage extends StatelessWidget {
   const ShopListPage({super.key});
@@ -22,58 +23,18 @@ class ShopListPage extends StatelessWidget {
           },
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: [
-            _buildShopList(
-              context: context,
-              name: 'Suhana Stores',
-              address: 'Andruman, Near irmbanhat,Thaliyil',
-              profileimage:
-                  'https://th.bing.com/th/id/OIP.D7vUlKYVE4k_Ma10WgmJ8QHaF-?w=241&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-              shopimage:
-                  'https://th.bing.com/th/id/OIP.D7vUlKYVE4k_Ma10WgmJ8QHaF-?w=241&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-              shopdetail: 'Grocery Shop',
-            ),
+      body: ListView.builder(
+        itemCount: shops.length,
 
-            _buildShopList(
-              context: context,
-
-              name: 'JK Shop',
-              address: 'Jayakrishnan,Kanakalayam,Thaliyil',
-              profileimage:
-                  'https://th.bing.com/th/id/OIP.rQrSXFS8w-TYO45Y1RQ8cgHaHa?w=194&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-              shopimage:
-                  'https://th.bing.com/th/id/OIP.rQrSXFS8w-TYO45Y1RQ8cgHaHa?w=194&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-              shopdetail: 'Grocery Shop',
-            ),
-
-            _buildShopList(
-              context: context,
-              name: 'Kalco Supermarket',
-              address: 'Near Eng College, Dharmasala',
-              profileimage:
-                  'https://th.bing.com/th/id/OIP.XOoY-oixZ2hDKYsyaFH0hAHaF_?w=241&h=193&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-              shopimage:
-                  'https://th.bing.com/th/id/OIP.XOoY-oixZ2hDKYsyaFH0hAHaF_?w=241&h=193&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-              shopdetail: 'Supermarket',
-            ),
-          ],
-        ),
+        itemBuilder: (context, index) {
+          final shop = shops[index];
+          return _buildShopList(context: context, shop: shop);
+        },
       ),
     );
   }
 
-  Widget _buildShopList({
-    required name,
-    required address,
-    required profileimage,
-    required shopimage,
-    required shopdetail,
-
-    required context,
-  }) {
+  Widget _buildShopList({required Shop shop, required context}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -83,19 +44,22 @@ class ShopListPage extends StatelessWidget {
             InkWell(
               onTap: () {
                 // NavigationHelper.push(context, IndividualShopPage(name: name));
-                Get.to(() => IndividualShopPage());
+                Get.to(() => IndividualShopPage(shop: shop));
               },
               child: ListTile(
-                title: CustomText(text: name, fontSize: 23),
-                subtitle: FittedBox(child: CustomText(text: address)),
+                title: CustomText(text: shop.name, fontSize: 23),
+                subtitle: FittedBox(child: CustomText(text: shop.address)),
                 leading: CircleAvatar(
-                  backgroundImage: NetworkImage(profileimage),
+                  backgroundImage: NetworkImage(
+                    shop.profileImage ??
+                        'https://th.bing.com/th/id/OIP.D7vUlKYVE4k_Ma10WgmJ8QHaF-?w=241&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+                  ),
                 ),
                 trailing: Icon(Icons.more_vert),
               ),
             ),
-            ListTile(title: CustomText(text: shopdetail)),
-            Image.network(shopimage),
+            ListTile(title: CustomText(text: shop.description)),
+            Image.network(shop.shopImage),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -109,3 +73,40 @@ class ShopListPage extends StatelessWidget {
     );
   }
 }
+
+
+/*
+// _buildShopList(
+            //   context: context,
+            //   name: 'Suhana Stores',
+            //   address: 'Andruman, Near irmbanhat,Thaliyil',
+            //   profileimage:
+            //       'https://th.bing.com/th/id/OIP.D7vUlKYVE4k_Ma10WgmJ8QHaF-?w=241&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+            //   shopimage:
+            //       'https://th.bing.com/th/id/OIP.D7vUlKYVE4k_Ma10WgmJ8QHaF-?w=241&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+            //   shopdetail: 'Grocery Shop',
+            // ),
+
+            // _buildShopList(
+            //   context: context,
+
+            //   name: 'JK Shop',
+            //   address: 'Jayakrishnan,Kanakalayam,Thaliyil',
+            //   profileimage:
+            //       'https://th.bing.com/th/id/OIP.rQrSXFS8w-TYO45Y1RQ8cgHaHa?w=194&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+            //   shopimage:
+            //       'https://th.bing.com/th/id/OIP.rQrSXFS8w-TYO45Y1RQ8cgHaHa?w=194&h=194&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+            //   shopdetail: 'Grocery Shop',
+            // ),
+
+            // _buildShopList(
+            //   context: context,
+            //   name: 'Kalco Supermarket',
+            //   address: 'Near Eng College, Dharmasala',
+            //   profileimage:
+            //       'https://th.bing.com/th/id/OIP.XOoY-oixZ2hDKYsyaFH0hAHaF_?w=241&h=193&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+            //   shopimage:
+            //       'https://th.bing.com/th/id/OIP.XOoY-oixZ2hDKYsyaFH0hAHaF_?w=241&h=193&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+            //   shopdetail: 'Supermarket',
+            // ),
+*/

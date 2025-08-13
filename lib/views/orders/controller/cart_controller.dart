@@ -6,23 +6,15 @@ import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
 
 class CartController extends GetxController {
   var cartItems = <ProductModel>[].obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   void addToCart(int productId) {
     final product = products.firstWhere(
       (p) => p.id == productId,
       orElse: () => throw Exception('Product not found'),
     );
-    if (product != null) {
-      cartItems.add(product);
-      Get.snackbar('Added to Cart', '${product.name} added to your cart');
-      print('Product added to cart: current cart items: ${cartItems.length}');
-    } else {
-      Get.snackbar('Error', 'Product not found');
-    }
+
+    cartItems.add(product);
+    Get.snackbar('Added to Cart', '${product.name} added to your cart');
   }
 
   void removeFromCart(int productId) {

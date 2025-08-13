@@ -13,11 +13,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    _navigate_screen();
+    _navigateScreen();
     super.initState();
   }
 
-  Future<void> _navigate_screen() async {
+  Future<void> _navigateScreen() async {
     await Future.delayed(Duration(seconds: 4));
     Get.to(
       () => AuthHome(),

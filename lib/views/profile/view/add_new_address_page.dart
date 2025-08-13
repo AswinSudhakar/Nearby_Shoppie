@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:nearby_shoppiee/core/widgets/text.dart';
 
 class AddNewAddressPage extends StatefulWidget {
-  const AddNewAddressPage({Key? key}) : super(key: key);
+  const AddNewAddressPage({super.key});
 
   @override
   State<AddNewAddressPage> createState() => _AddNewAddressPageState();
@@ -15,7 +16,7 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  String? _locationText;
+  // String? _locationText;
 
   Future<void> _getCurrentLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -64,7 +65,7 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
             "${place.postalCode}, ${place.country}";
 
         setState(() {
-          _locationText = fullAddress;
+          // _locationText = fullAddress;
           _addressController.text = fullAddress;
         });
       }
@@ -87,8 +88,7 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add New Address'),
-        backgroundColor: Colors.teal,
+        title: const CustomText(text: 'Add New Address', fontSize: 25),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -141,12 +141,13 @@ class _AddNewAddressPageState extends State<AddNewAddressPage> {
               ElevatedButton(
                 onPressed: _saveAddress,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
+                  backgroundColor: Colors.greenAccent,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
-                child: const Text(
-                  'Save Address',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
+                child: const CustomText(
+                  text: 'Save Address',
+                  fontSize: 18,
+                  color: Colors.white,
                 ),
               ),
             ],

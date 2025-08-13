@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/views/product/product/view/product_details_page.dart';
 
 class CategorywiseProductsPage extends StatelessWidget {
   final Category category;
   final IconData? icon;
 
-  CategorywiseProductsPage({super.key, required this.category, this.icon});
+  const CategorywiseProductsPage({
+    super.key,
+    required this.category,
+    this.icon,
+  });
 
-  final List<Map<String, String>> productss = const [
-    {"name": "Tea Powder", "price": "77", "offerPrice": "45"},
-    {"name": "Bread (Brown)", "price": "40", "offerPrice": "32"},
-    {"name": "Pickle (Mango)", "price": "60", "offerPrice": "55"},
-    {"name": "Maida", "price": "67", "offerPrice": "50"},
-    {"name": "Milk", "price": "32", "offerPrice": "28"},
-    {"name": "Turmeric Powder", "price": "45", "offerPrice": "37"},
-    {"name": "Basmati Rice", "price": "80", "offerPrice": "65"},
-    {"name": "Onion", "price": "25", "offerPrice": "22"},
-    {"name": "Coconut Oil", "price": "410", "offerPrice": "380"},
-    {"name": "Toothpaste", "price": "89", "offerPrice": "49"},
-    {"name": "Floor Cleaner (Lizol)", "price": "257", "offerPrice": "199"},
-  ];
+  // final List<Map<String, String>> productss = const [
+  //   {"name": "Tea Powder", "price": "77", "offerPrice": "45"},
+  //   {"name": "Bread (Brown)", "price": "40", "offerPrice": "32"},
+  //   {"name": "Pickle (Mango)", "price": "60", "offerPrice": "55"},
+  //   {"name": "Maida", "price": "67", "offerPrice": "50"},
+  //   {"name": "Milk", "price": "32", "offerPrice": "28"},
+  //   {"name": "Turmeric Powder", "price": "45", "offerPrice": "37"},
+  //   {"name": "Basmati Rice", "price": "80", "offerPrice": "65"},
+  //   {"name": "Onion", "price": "25", "offerPrice": "22"},
+  //   {"name": "Coconut Oil", "price": "410", "offerPrice": "380"},
+  //   {"name": "Toothpaste", "price": "89", "offerPrice": "49"},
+  //   {"name": "Floor Cleaner (Lizol)", "price": "257", "offerPrice": "199"},
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +52,7 @@ class CategorywiseProductsPage extends StatelessWidget {
                       radius: 24,
 
                       backgroundImage: icon == null
-                          ? NetworkImage(
-                              'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
-                            )
+                          ? NetworkImage(category.image)
                           : null,
                       child: Icon(icon),
                     ),
@@ -73,10 +78,10 @@ class CategorywiseProductsPage extends StatelessWidget {
                 itemCount: filteredProducts.length,
                 itemBuilder: (context, index) {
                   final product = filteredProducts[index];
-                  return ProductCard(
-                    name: product.name,
-                    price: product.price.toString(),
-                    offerPrice: product.price.toString(),
+                  return GestureDetector(
+                    onTap: () =>
+                        Get.to(() => ProductDetailsPage(product: product)),
+                    child: ProductCard(product: product),
                   );
                 },
               ),
@@ -89,21 +94,15 @@ class CategorywiseProductsPage extends StatelessWidget {
 }
 
 class ProductCard extends StatelessWidget {
-  final String name;
-  final String price;
-  final String offerPrice;
+  final ProductModel product;
 
-  const ProductCard({
-    super.key,
-    required this.name,
-    required this.price,
-    required this.offerPrice,
-  });
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
-    final double original = double.tryParse(price) ?? 0;
-    final double offer = double.tryParse(offerPrice) ?? 0;
+    final double original =
+        double.tryParse((product.price * 0.9).toString()) ?? 0;
+    final double offer = double.tryParse(product.price.toString()) ?? 0;
     final int discount = ((1 - (offer / original)) * 100).round();
 
     return Padding(
@@ -120,7 +119,7 @@ class ProductCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                  'https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+                  product.image,
                   width: 100,
                   height: 100,
                   fit: BoxFit.cover,
@@ -134,7 +133,7 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: name,
+                      text: product.name,
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
@@ -143,7 +142,7 @@ class ProductCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '₹$price',
+                          offer.toString(),
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.grey,
@@ -152,7 +151,7 @@ class ProductCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         CustomText(
-                          text: '₹$offerPrice',
+                          text: original.toString(),
                           fontSize: 17,
                           color: Colors.green.shade700,
                           fontWeight: FontWeight.bold,
