@@ -5,6 +5,7 @@ import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/home/home_page.dart';
+import 'package:nearby_shoppiee/views/orders/controller/cart_controller.dart';
 import 'package:nearby_shoppiee/views/product/category/view/categories_page.dart';
 
 class Cart extends StatefulWidget {
@@ -16,11 +17,13 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   String? selectedvalue;
-  final List<Map<String, String>> products = const [
-    {"name": "Maida", "price": "67", "offerPrice": "50"},
-    {"name": "Milk", "price": "32", "offerPrice": "28"},
-    {"name": "Turmeric Powder", "price": "45", "offerPrice": "37"},
-  ];
+  // final List<Map<String, String>> products = const [
+  //   {"name": "Maida", "price": "67", "offerPrice": "50"},
+  //   {"name": "Milk", "price": "32", "offerPrice": "28"},
+  //   {"name": "Turmeric Powder", "price": "45", "offerPrice": "37"},
+  // ];
+
+  final CartController ccartcontroller = Get.find<CartController>();
 
   final List<String> items = [
     '8 AM-10 AM',
@@ -68,16 +71,17 @@ class _CartState extends State<Cart> {
                 child: Row(
                   children: [
                     Flexible(
-                      child: ListView.builder(
-                        itemCount: products.length,
-                        itemBuilder: (context, index) {
-                          final product = products[index];
-                          return ProductCard(
-                            name: product["name"]!,
-                            price: product["price"]!,
-                            offerPrice: product["offerPrice"]!,
-                          );
-                        },
+                      child: Obx(
+                        () => ListView.builder(
+                          itemCount: ccartcontroller.cartItems.length,
+                          itemBuilder: (context, index) {
+                            final product = ccartcontroller.cartItems[index];
+                            return ProductCard(
+                              name: product.name,
+                              price: product.price.toString(),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],
@@ -256,14 +260,8 @@ class _CartState extends State<Cart> {
 class ProductCard extends StatefulWidget {
   final String name;
   final String price;
-  final String offerPrice;
 
-  const ProductCard({
-    super.key,
-    required this.name,
-    required this.price,
-    required this.offerPrice,
-  });
+  const ProductCard({super.key, required this.name, required this.price});
 
   @override
   State<ProductCard> createState() => _ProductCardState();
@@ -339,12 +337,12 @@ class _ProductCardState extends State<ProductCard> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        CustomText(
-                          text: '₹${widget.offerPrice}',
-                          fontSize: 17,
-                          color: Colors.green.shade700,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        // CustomText(
+                        //   text: '₹${widget.offerPrice}',
+                        //   fontSize: 17,
+                        //   color: Colors.green.shade700,
+                        //   fontWeight: FontWeight.bold,
+                        // ),
                         const SizedBox(width: 8),
                       ],
                     ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nearby_shoppiee/core/utils/snackbarhelper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/mock%20data/mockdata.dart';

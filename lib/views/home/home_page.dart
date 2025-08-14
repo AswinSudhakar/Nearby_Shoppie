@@ -9,6 +9,7 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
 import 'package:nearby_shoppiee/views/home/notification_page.dart';
 import 'package:nearby_shoppiee/views/home/search_page.dart';
+import 'package:nearby_shoppiee/views/orders/controller/cart_controller.dart';
 import 'package:nearby_shoppiee/views/product/category/view/category_wise_productlist_page.dart';
 // import 'package:nearby_shoppiee/views/product/product/controller/Product_controller.dart';
 import 'package:nearby_shoppiee/views/product/product/view/product_details_page.dart';
@@ -22,7 +23,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // final productcontroller = Get.put(ProductController());
+  final CartController ccartcontroller = Get.find<CartController>();
+
+  // final Cartcontroller cartController = Get.put(Cartcontroller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -387,6 +390,9 @@ class _HomePageState extends State<HomePage> {
                                                     ),
                                                 label: 'Add To Cart',
                                                 onPressed: () {
+                                                  Get.find<CartController>()
+                                                      .addToCart(product.id);
+
                                                   SnackBarHelper.show(
                                                     context,
                                                     message:

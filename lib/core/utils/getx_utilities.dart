@@ -126,4 +126,11 @@ translation====>>>
                     };
                   }
 
+
+
+
+
+                  when we are using  final CartController ccartcontroller = Get.find<CartController>();,, we have to use  Get.find<CartController>()
+                                                      .addToCart(product.id); to call the function and get.put method shoud be called in the void main() method
+
                   */

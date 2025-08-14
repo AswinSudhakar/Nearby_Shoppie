@@ -4,9 +4,8 @@ import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/auth/view/login_page.dart';
 import 'package:nearby_shoppiee/views/chat/view/chat_page.dart';
-import 'package:nearby_shoppiee/views/orders/view/cart_page.dart';
+import 'package:nearby_shoppiee/views/cart/views/cart_page.dart';
 import 'package:nearby_shoppiee/views/orders/view/orders_page.dart';
-import 'package:nearby_shoppiee/views/product/product/view/product_list_page.dart';
 import 'package:nearby_shoppiee/views/profile/view/profile_page.dart';
 import 'package:nearby_shoppiee/views/profile/view/my_address_page.dart';
 
