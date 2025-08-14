@@ -3,13 +3,48 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 
 class ChatPage extends StatelessWidget {
   final String name;
-  const ChatPage({super.key, required this.name});
+  final String message;
+  final String imageUrl;
+  const ChatPage({
+    super.key,
+    required this.name,
+    required this.message,
+    required this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: CustomText(text: name, fontSize: 25),
+        title: SizedBox(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      imageUrl ??
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf1fiSQO7JfDw0uv1Ae_Ye-Bo9nhGNg27dwg&s',
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  CustomText(
+                    text: name,
+                    fontSize: 20,
+                    fontFamily: 'Crimson-Bold',
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  IconButton(onPressed: () {}, icon: Icon(Icons.call)),
+                  IconButton(onPressed: () {}, icon: Icon(Icons.video_call)),
+                ],
+              ),
+            ],
+          ),
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -22,24 +57,24 @@ class ChatPage extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: ChatBubble(
-                    message: "The Delivery isn't good",
+                    message: message,
                     color: Colors.greenAccent,
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: ChatBubble(
-                    message: "The Delivery isn't good",
-                    color: Colors.greenAccent,
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: ChatBubble(
-                    message: "The Delivery is late",
-                    color: Colors.greenAccent,
-                  ),
-                ),
+                // Align(
+                //   alignment: Alignment.centerLeft,
+                //   child: ChatBubble(
+                //     message: "The Delivery isn't good",
+                //     color: Colors.greenAccent,
+                //   ),
+                // ),
+                // Align(
+                //   alignment: Alignment.centerLeft,
+                //   child: ChatBubble(
+                //     message: "The Delivery is late",
+                //     color: Colors.greenAccent,
+                //   ),
+                // ),
               ],
             ),
           ),

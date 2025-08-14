@@ -23,6 +23,8 @@ class Inbox extends StatelessWidget {
       'Did you receive my message?',
       'See you tomorrow!',
     ];
+    final String imageUrl =
+        'https://thumbs.dreamstime.com/b/profile-placeholder-image-gray-silhouette-no-photo-profile-placeholder-image-gray-silhouette-no-photo-person-avatar-123478438.jpg';
 
     return ListView.builder(
       itemCount: 5,
@@ -30,15 +32,17 @@ class Inbox extends StatelessWidget {
         final chatName = chatNames[index];
         final chatMessage = chatrmessages[index];
         return GestureDetector(
-          onTap: () => Get.to(() => ChatPage(name: chatName)),
+          onTap: () => Get.to(
+            () => ChatPage(
+              name: chatName,
+              message: chatMessage,
+              imageUrl: imageUrl,
+            ),
+          ),
           child: Card(
             elevation: 2,
             child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                  'https://thumbs.dreamstime.com/b/profile-placeholder-image-gray-silhouette-no-photo-profile-placeholder-image-gray-silhouette-no-photo-person-avatar-123478438.jpg',
-                ),
-              ),
+              leading: CircleAvatar(backgroundImage: NetworkImage(imageUrl)),
               title: CustomText(text: chatName),
               subtitle: CustomText(text: chatMessage),
             ),

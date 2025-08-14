@@ -15,19 +15,24 @@ class ShopsChat extends StatelessWidget {
       'New gadgets available in stock.',
       'Check out our latest fashion collection!',
     ];
+    final String imageUrl =
+        'https://img.freepik.com/free-vector/shop-with-sign-open-design_23-2148544029.jpg';
     return ListView.builder(
       itemCount: 3,
       itemBuilder: (context, index) {
         String shopName = shopNames[index];
         String shopMessage = shopMessages[index];
+
         return GestureDetector(
-          onTap: () => Get.to(() => ChatPage(name: shopName)),
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundImage: NetworkImage(
-                'https://img.freepik.com/free-vector/shop-with-sign-open-design_23-2148544029.jpg',
-              ),
+          onTap: () => Get.to(
+            () => ChatPage(
+              name: shopName,
+              message: shopMessage,
+              imageUrl: imageUrl,
             ),
+          ),
+          child: ListTile(
+            leading: CircleAvatar(backgroundImage: NetworkImage(imageUrl)),
             title: CustomText(text: shopName),
             subtitle: CustomText(text: shopMessage),
           ),
