@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
 
 class IndividualShopPage extends StatelessWidget {
   final Shop shop;
@@ -12,6 +15,8 @@ class IndividualShopPage extends StatelessWidget {
     final List<ProductModel> productslist = products
         .where((product) => product.shopId == shop.id)
         .toList();
+
+    final Cartcontroller cartcontroller = Get.find<Cartcontroller>();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -123,6 +128,7 @@ class IndividualShopPage extends StatelessWidget {
   }
 
   Widget _productBuider({required ProductModel product}) {
+    final Cartcontroller cartcontroller = Get.find<Cartcontroller>();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -211,7 +217,9 @@ class IndividualShopPage extends StatelessWidget {
                       height: 40,
                       label: 'Add To Cart',
                       textColor: Colors.black,
-                      onPressed: () {},
+                      onPressed: () {
+                        cartcontroller.addToCart(product);
+                      },
                     ),
                   ],
                 ),

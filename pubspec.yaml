@@ -24,6 +24,7 @@ dependencies:
   geolocator: ^14.0.2
   geocoding: ^4.0.0
   logger: ^2.6.1
+  get_storage: ^2.1.1
 
 
   

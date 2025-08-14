@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
+import 'package:nearby_shoppiee/core/utils/snackbarhelper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/home/home_page.dart';
-import 'package:nearby_shoppiee/views/orders/controller/cart_controller.dart';
+import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
+import 'package:nearby_shoppiee/views/home/main_landing_page.dart';
 import 'package:nearby_shoppiee/views/product/category/view/categories_page.dart';
 
 class Cart extends StatefulWidget {
@@ -23,7 +25,7 @@ class _CartState extends State<Cart> {
   //   {"name": "Turmeric Powder", "price": "45", "offerPrice": "37"},
   // ];
 
-  final CartController ccartcontroller = Get.find<CartController>();
+  final Cartcontroller cartController = Get.find<Cartcontroller>();
 
   final List<String> items = [
     '8 AM-10 AM',
@@ -66,26 +68,28 @@ class _CartState extends State<Cart> {
           child: Column(
             children: [
               CustomText(text: AppStrings.products.tr, fontSize: 25),
-              SizedBox(
-                height: 450,
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Obx(
-                        () => ListView.builder(
-                          itemCount: ccartcontroller.cartItems.length,
-                          itemBuilder: (context, index) {
-                            final product = ccartcontroller.cartItems[index];
-                            return ProductCard(
-                              name: product.name,
-                              price: product.price.toString(),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              Column(
+                children: [
+                  Obx(() {
+                    return cartController.cartItems.isEmpty
+                        ? Center(
+                            child: CustomText(
+                              text: 'No items in cart',
+                              fontSize: 25,
+                              color: Colors.grey,
+                            ),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: cartController.cartItems.length,
+                            itemBuilder: (context, index) {
+                              final product = cartController.cartItems[index];
+                              return ProductCard(product: product);
+                            },
+                          );
+                  }),
+                ],
               ),
               SizedBox(height: 10),
 
@@ -244,7 +248,22 @@ class _CartState extends State<Cart> {
                   label: AppStrings.placeOrder.tr,
                   width: double.infinity,
                   onPressed: () {
-                    Get.off(HomePage());
+                    Get.defaultDialog(
+                      title: 'order Placed',
+                      middleText:
+                          'Order Placed For ${cartController.cartItems.map((p) => p.name).toList()}',
+                      onConfirm: () {
+                        Get.back();
+                      },
+                      confirmTextColor: Colors.white,
+                      textConfirm: 'OK',
+                    );
+                    // SnackBarHelper.show(
+                    //   context,
+                    //   message:
+                    //       'Order Placed For ${cartController.cartItems.map((p) => p.name).toList()}',
+                    // );
+                    Get.off(MainScreen());
                   },
                   backgroundColor: Colors.greenAccent,
                 ),
@@ -258,16 +277,16 @@ class _CartState extends State<Cart> {
 }
 
 class ProductCard extends StatefulWidget {
-  final String name;
-  final String price;
+  final ProductModel product;
 
-  const ProductCard({super.key, required this.name, required this.price});
+  const ProductCard({super.key, required this.product});
 
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
 
 class _ProductCardState extends State<ProductCard> {
+  final Cartcontroller cartController = Get.find<Cartcontroller>();
   final List<String> items1 = [
     '1',
     '2',
@@ -306,7 +325,7 @@ class _ProductCardState extends State<ProductCard> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                  'https://th.bing.com/th/id/OIP.ira6M4rbtxWoOsFGx-G5UAHaGw?w=196&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+                  widget.product.image,
                   width: 100,
                   height: 100,
                   fit: BoxFit.cover,
@@ -319,17 +338,34 @@ class _ProductCardState extends State<ProductCard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText(
-                      text: widget.name,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: widget.product.name,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            cartController.removeFromCart(widget.product);
+
+                            // SnackBarHelper.show(
+                            //   context,
+                            //   message:
+                            //       '${widget.product.name} removed from cart',
+                            // );
+                          },
+                          icon: Icon(Icons.delete),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 8),
 
                     Row(
                       children: [
                         Text(
-                          '₹${widget.price}',
+                          '₹${widget.product.price}',
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.grey,

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:nearby_shoppiee/core/translation/translation.dart';
-import 'package:nearby_shoppiee/views/orders/controller/cart_controller.dart';
+import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
 
 import 'package:nearby_shoppiee/views/splash/splash_screen.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
   WidgetsFlutterBinding.ensureInitialized();
-  Get.put(CartController()); // Initialize CartController
+  await GetStorage.init();
+  Get.put(Cartcontroller());
 
   runApp(MyApp());
 }

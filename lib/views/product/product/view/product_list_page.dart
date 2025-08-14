@@ -4,6 +4,7 @@ import 'package:nearby_shoppiee/core/utils/snackbarhelper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
 import 'package:nearby_shoppiee/views/product/product/view/product_details_page.dart';
 
 class ProductListPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class ProductListPage extends StatefulWidget {
 }
 
 class _ProductListPageState extends State<ProductListPage> {
+  final Cartcontroller cartcontroller = Get.find<Cartcontroller>();
   @override
   Widget build(BuildContext context) {
     List<ProductModel> productlist = products
@@ -207,6 +209,7 @@ class _ProductListPageState extends State<ProductListPage> {
                               ),
                               label: 'Add To Cart',
                               onPressed: () {
+                                cartcontroller.addToCart(product);
                                 SnackBarHelper.show(
                                   context,
                                   message: '${product.name} added to cart',

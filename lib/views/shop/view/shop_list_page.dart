@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
-import 'package:nearby_shoppiee/views/shop/individual/individual_shop_page.dart';
+import 'package:nearby_shoppiee/views/shop/view/individual/individual_shop_page.dart';
 import 'package:nearby_shoppiee/views/shop/view/add_shop_page.dart';
 
 class ShopListPage extends StatelessWidget {
@@ -59,7 +59,27 @@ class ShopListPage extends StatelessWidget {
               ),
             ),
             ListTile(title: CustomText(text: shop.description)),
-            Image.network(shop.shopImage),
+            Image.network(
+              shop.shopImage,
+              loadingBuilder:
+                  (
+                    BuildContext context,
+                    Widget child,
+                    ImageChunkEvent? loadingProgress,
+                  ) {
+                    if (loadingProgress == null) {
+                      return child;
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
