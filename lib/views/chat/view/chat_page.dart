@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 
 class ChatPage extends StatelessWidget {
-  const ChatPage({super.key});
+  final String name;
+  const ChatPage({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: CustomText(text: 'Chat with us', fontSize: 25),
+        title: CustomText(text: name, fontSize: 25),
         centerTitle: true,
       ),
       body: Column(

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/auth/view/login_page.dart';
+import 'package:nearby_shoppiee/views/chat/view/chat_list_page.dart';
 import 'package:nearby_shoppiee/views/chat/view/chat_page.dart';
 import 'package:nearby_shoppiee/views/cart/views/cart_page.dart';
 import 'package:nearby_shoppiee/views/orders/view/orders_page.dart';
@@ -111,7 +112,7 @@ class MorePage extends StatelessWidget {
                   icon: Icons.chat,
                   text: AppStrings.chats.tr,
                   onTap: () {
-                    Get.to(() => ChatPage());
+                    Get.to(() => ChatListPage());
                   },
                 ),
                 // _buildDrawerItem(
