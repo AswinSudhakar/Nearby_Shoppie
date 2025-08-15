@@ -340,8 +340,7 @@ class _HomePageState extends State<HomePage> {
                                 child: SizedBox(
                                   height: 300,
                                   child: Column(
-                                    mainAxisSize: MainAxisSize
-                                        .min, // ✅ Important: prevents overflow
+                                    mainAxisSize: MainAxisSize.min,
 
                                     children: [
                                       ClipRRect(
@@ -359,8 +358,7 @@ class _HomePageState extends State<HomePage> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
-                                          mainAxisSize: MainAxisSize
-                                              .min, // ✅ Ensures it only takes needed height
+                                          mainAxisSize: MainAxisSize.min,
 
                                           children: [
                                             Text(

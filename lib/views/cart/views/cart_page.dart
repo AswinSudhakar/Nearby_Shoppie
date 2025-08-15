@@ -251,9 +251,10 @@ class _CartState extends State<Cart> {
                     Get.defaultDialog(
                       title: 'order Placed',
                       middleText:
-                          'Order Placed For ${cartController.cartItems.map((p) => p.name).toList()}',
+                          'Place Order For ${cartController.cartItems.map((p) => p.name).toList()}',
                       onConfirm: () {
-                        Get.back();
+                        Get.offAll(() => MainScreen());
+                        cartController.cartItems.clear();
                       },
                       confirmTextColor: Colors.white,
                       textConfirm: 'OK',
@@ -263,7 +264,6 @@ class _CartState extends State<Cart> {
                     //   message:
                     //       'Order Placed For ${cartController.cartItems.map((p) => p.name).toList()}',
                     // );
-                    Get.off(MainScreen());
                   },
                   backgroundColor: Colors.greenAccent,
                 ),
