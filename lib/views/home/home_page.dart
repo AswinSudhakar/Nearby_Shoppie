@@ -9,7 +9,7 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
 import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
 import 'package:nearby_shoppiee/views/home/notification_page.dart';
-import 'package:nearby_shoppiee/views/home/search_page.dart';
+import 'package:nearby_shoppiee/views/search/view/search_page.dart';
 import 'package:nearby_shoppiee/views/product/category/view/category_wise_productlist_page.dart';
 // import 'package:nearby_shoppiee/views/product/product/controller/Product_controller.dart';
 import 'package:nearby_shoppiee/views/product/product/view/product_details_page.dart';
