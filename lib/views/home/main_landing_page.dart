@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nearby_shoppiee/views/home/home_page.dart';
 import 'package:nearby_shoppiee/views/home/more_page.dart';
-import 'package:nearby_shoppiee/views/product/category/categories_page.dart';
-import 'package:nearby_shoppiee/views/shop/shop_list_page.dart';
+import 'package:nearby_shoppiee/views/product/category/view/categories_page.dart';
+import 'package:nearby_shoppiee/views/shop/view/shop_list_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

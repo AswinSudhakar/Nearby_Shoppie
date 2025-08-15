@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
-import 'package:nearby_shoppiee/core/utils/helpers/navigation_helper.dart';
+import 'package:nearby_shoppiee/core/utils/navigation_helper.dart';
+import 'package:nearby_shoppiee/core/utils/snackbarhelper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 
 import 'package:nearby_shoppiee/core/widgets/text.dart';
+import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
 import 'package:nearby_shoppiee/views/home/notification_page.dart';
-import 'package:nearby_shoppiee/views/home/search_page.dart';
-import 'package:nearby_shoppiee/views/product/category/category_wise_productlist_page.dart';
-import 'package:nearby_shoppiee/views/shop/individual/individual_shop_page.dart';
+import 'package:nearby_shoppiee/views/search/view/search_page.dart';
+import 'package:nearby_shoppiee/views/product/category/view/category_wise_productlist_page.dart';
+// import 'package:nearby_shoppiee/views/product/product/controller/Product_controller.dart';
+import 'package:nearby_shoppiee/views/product/product/view/product_details_page.dart';
+import 'package:nearby_shoppiee/views/shop/view/individual/individual_shop_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,6 +23,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final Cartcontroller ccartcontroller = Get.find<Cartcontroller>();
+
+  // final Cartcontroller cartController = Get.put(Cartcontroller());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,9 +117,9 @@ class _HomePageState extends State<HomePage> {
                       crossAxisCount: 3,
                       childAspectRatio: 1, // Width to height ratio
                     ),
-                    itemCount: 18,
+                    itemCount: categories.length,
                     itemBuilder: (context, index) {
-                      final category = 'category ${index + 1}';
+                      final category = categories[index];
                       return InkWell(
                         onTap: () =>
                             // NavigationHelper.push(
@@ -129,15 +137,23 @@ class _HomePageState extends State<HomePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: SizedBox(
                                   height: 70,
-                                  child: Image(
-                                    image: NetworkImage(
-                                      'https://static.vecteezy.com/system/resources/previews/024/123/312/non_2x/one-single-line-drawing-of-fresh-vegetables-milk-lettuce-carrot-and-bread-graphic-illustration-daily-staple-food-badge-concept-modern-continuous-line-draw-grocery-store-design-png.png',
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadiusGeometry.circular(
+                                      15,
                                     ),
-                                    height: 60,
+                                    child: Image(
+                                      image: NetworkImage(
+                                        category.image,
+
+                                        //'https://static.vecteezy.com/system/resources/previews/024/123/312/non_2x/one-single-line-drawing-of-fresh-vegetables-milk-lettuce-carrot-and-bread-graphic-illustration-daily-staple-food-badge-concept-modern-continuous-line-draw-grocery-store-design-png.png'
+                                      ),
+                                      height: 60,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
-                              CustomText(text: category),
+                              CustomText(text: category.name),
                             ],
                           ),
                         ),
@@ -165,15 +181,16 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(
                   height: 220,
                   child: ListView.builder(
-                    itemCount: 7,
+                    itemCount: shops.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
+                      final Shop shop = shops[index];
                       return Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: GestureDetector(
                           onTap: () => NavigationHelper.push(
                             context,
-                            IndividualShopPage(name: 'Shop Name'),
+                            IndividualShopPage(shop: shop),
                           ),
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -188,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                                     top: Radius.circular(15),
                                   ),
                                   child: Image.network(
-                                    'https://th.bing.com/th/id/OIP.4YGuDSwguXVVmVLl60Mk-AHaHa?w=199&h=199&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
+                                    shop.shopImage,
                                     height: 160,
                                     width: 150,
                                     fit: BoxFit.cover,
@@ -198,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CustomText(
-                                    text: 'Shop Name',
+                                    text: shop.name,
                                     fontSize: 16,
                                   ),
                                 ),
@@ -247,50 +264,150 @@ class _HomePageState extends State<HomePage> {
                       ),
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: 16,
+                      itemCount: products.length,
                       itemBuilder: (context, index) {
-                        return Card(
-                          elevation: 4,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
+                        final product = products[index];
+
+                        return GestureDetector(
+                          onTap: () => Get.to(
+                            () => ProductDetailsPage(product: product),
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15),
+                          child:
+                              //  Card(
+                              //   color: Colors.white,
+                              //   elevation: 4,
+                              //   shape: RoundedRectangleBorder(
+                              //     borderRadius: BorderRadius.circular(15),
+                              //   ),
+                              //   child: Column(
+                              //     mainAxisAlignment: MainAxisAlignment.start,
+                              //     children: [
+                              //       ClipRRect(
+                              //         borderRadius: BorderRadius.only(
+                              //           topLeft: Radius.circular(15),
+                              //           topRight: Radius.circular(15),
+                              //           bottomLeft: Radius.circular(15),
+                              //           bottomRight: Radius.circular(15),
+                              //         ),
+                              //         child: Image.network(
+                              //           product.image,
+                              //           width: double.infinity,
+                              //           height: 150,
+                              //           fit: BoxFit.contain,
+                              //         ),
+                              //       ),
+                              //       Text(
+                              //         overflow: TextOverflow.ellipsis,
+                              //         product.name,
+                              //         style: TextStyle(
+                              //           fontSize: 16,
+                              //           fontWeight: FontWeight.w600,
+                              //         ),
+                              //       ),
+                              //       CustomText(
+                              //         text: '₹${product.price}',
+                              //         fontSize: 16,
+                              //       ),
+                              //       CustomElevatedButton(
+                              //         backgroundColor: const Color.fromARGB(
+                              //           255,
+                              //           133,
+                              //           238,
+                              //           187,
+                              //         ),
+                              //         width: 140,
+                              //         height: 40,
+                              //         label: 'Add To Cart',
+                              //         onPressed: () {
+                              //           Get.snackbar(
+                              //             '',
+                              //             '${product.name} added to cart',
+                              //             snackPosition: SnackPosition.BOTTOM,
+                              //             backgroundColor: Colors.green[100],
+                              //             colorText: Colors.black,
+                              //           );
+                              //         },
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                              Card(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
-                                child: Image.network(
-                                  'https://2.wlimg.com/product_images/bc-full/2022/9/10844391/cold-pressed-virgin-coconut-oil-1663134672-6537817.jpeg',
-                                  width: double.infinity,
-                                  height: 150,
-                                  fit: BoxFit.cover,
+                                elevation: 3,
+                                child: SizedBox(
+                                  height: 300,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize
+                                        .min, // ✅ Important: prevents overflow
+
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            const BorderRadius.vertical(
+                                              top: Radius.circular(15),
+                                            ),
+                                        child: Image.network(
+                                          product.image,
+                                          height: 139,
+                                          width: double.infinity,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize
+                                              .min, // ✅ Ensures it only takes needed height
+
+                                          children: [
+                                            Text(
+                                              product.name,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            CustomText(
+                                              text: '₹${product.price}',
+                                              fontSize: 16,
+                                            ),
+                                            const SizedBox(height: 8),
+                                            SizedBox(
+                                              height: 40,
+                                              child: CustomElevatedButton(
+                                                backgroundColor:
+                                                    const Color.fromARGB(
+                                                      255,
+                                                      133,
+                                                      238,
+                                                      187,
+                                                    ),
+                                                label: 'Add To Cart',
+                                                onPressed: () {
+                                                  Get.find<Cartcontroller>()
+                                                      .addToCart(product);
+
+                                                  // SnackBarHelper.show(
+                                                  //   context,
+                                                  //   message:
+                                                  //       '${product.name} added to cart',
+                                                  // );
+                                                },
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                              Text(
-                                'Product ${index + 1}',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              CustomText(text: '₹200', fontSize: 16),
-                              CustomElevatedButton(
-                                backgroundColor: const Color.fromARGB(
-                                  255,
-                                  133,
-                                  238,
-                                  187,
-                                ),
-                                width: 140,
-                                height: 40,
-                                label: 'Add To Cart',
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
                         );
                       },
                     );

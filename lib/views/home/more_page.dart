@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/auth/login_page.dart';
-import 'package:nearby_shoppiee/views/chat/chat_page.dart';
-import 'package:nearby_shoppiee/views/orders/cart_page.dart';
-import 'package:nearby_shoppiee/views/orders/orders_page.dart';
-import 'package:nearby_shoppiee/views/product/product/product_list_page.dart';
-import 'package:nearby_shoppiee/views/profile/profile_page.dart';
-import 'package:nearby_shoppiee/views/profile/my_address_page.dart';
+import 'package:nearby_shoppiee/views/auth/view/login_page.dart';
+import 'package:nearby_shoppiee/views/chat/view/chat_list_page.dart';
+import 'package:nearby_shoppiee/views/chat/view/chat_page.dart';
+import 'package:nearby_shoppiee/views/cart/views/cart_page.dart';
+import 'package:nearby_shoppiee/views/orders/view/orders_page.dart';
+import 'package:nearby_shoppiee/views/profile/view/profile_page.dart';
+import 'package:nearby_shoppiee/views/profile/view/my_address_page.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({super.key});
@@ -112,7 +112,7 @@ class MorePage extends StatelessWidget {
                   icon: Icons.chat,
                   text: AppStrings.chats.tr,
                   onTap: () {
-                    Get.to(() => ChatPage());
+                    Get.to(() => ChatListPage());
                   },
                 ),
                 // _buildDrawerItem(
@@ -138,14 +138,14 @@ class MorePage extends StatelessWidget {
                 //     NavigationHelper.push(context, CategoriesPage());
                 //   },
                 // ),
-                _buildDrawerItem(
-                  icon: Icons.receipt_long,
-                  text: AppStrings.productListPage.tr,
-                  onTap: () {
-                    // NavigationHelper.push(context, ProductListPage());
-                    Get.to(() => ProductListPage());
-                  },
-                ),
+                // _buildDrawerItem(
+                //   icon: Icons.receipt_long,
+                //   text: AppStrings.productListPage.tr,
+                //   onTap: () {
+                //     // NavigationHelper.push(context, ProductListPage());
+                //     Get.to(() => ProductListPage());
+                //   },
+                // ),
 
                 // _buildDrawerItem(
                 //   icon: Icons.receipt_long,

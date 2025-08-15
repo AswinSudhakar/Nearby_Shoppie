@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/views/auth/auth_home.dart';
+import 'package:nearby_shoppiee/views/auth/view/auth_home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,11 +13,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    _navigate_screen();
+    _navigateScreen();
     super.initState();
   }
 
-  Future<void> _navigate_screen() async {
+  Future<void> _navigateScreen() async {
     await Future.delayed(Duration(seconds: 4));
     Get.to(
       () => AuthHome(),
