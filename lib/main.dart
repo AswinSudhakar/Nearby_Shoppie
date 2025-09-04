@@ -5,8 +5,7 @@ import 'package:get_storage/get_storage.dart';
 
 import 'package:nearby_shoppiee/core/translation/translation.dart';
 import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
-
-import 'package:nearby_shoppiee/views/splash/splash_screen.dart';
+import 'package:nearby_shoppiee/views/home/main_landing_page.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
             home: child,
           );
         },
-        child: const SplashScreen(),
+        child: const MainScreen(),
       ),
     );
   }

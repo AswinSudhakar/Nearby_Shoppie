@@ -3,9 +3,12 @@ import 'dart:math';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/mock%20data/data/product_data.dart';
+import 'package:nearby_shoppiee/mock%20data/models/productmodel.dart';
+import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   final ProductModel product;
@@ -80,6 +83,20 @@ class ProductDetailsPage extends StatelessWidget {
               SizedBox(height: 20),
               CustomText(text: product.description),
               SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomElevatedButton(
+                    label: 'AddToCart',
+                    backgroundColor: Colors.greenAccent,
+                    onPressed: () {
+                      Get.find<Cartcontroller>().addToCart(product);
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+
               Divider(),
 
               SizedBox(

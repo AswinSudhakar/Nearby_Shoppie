@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/mock%20data/data/product_data.dart';
+import 'package:nearby_shoppiee/mock%20data/models/productmodel.dart';
 
 class SearchControllerr extends GetxController {
   var SearchedList = <ProductModel>[].obs; // RxList<ProductModel>
