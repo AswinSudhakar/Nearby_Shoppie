@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/utils/navigation_helper.dart';
-import 'package:nearby_shoppiee/core/utils/snackbarhelper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/mock%20data/data/category_data.dart';
+import 'package:nearby_shoppiee/mock%20data/data/product_data.dart';
+import 'package:nearby_shoppiee/mock%20data/data/shop_data.dart';
+import 'package:nearby_shoppiee/mock%20data/models/shopmodel.dart';
 import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
 import 'package:nearby_shoppiee/views/home/notification_page.dart';
 import 'package:nearby_shoppiee/views/search/view/search_page.dart';
@@ -340,8 +342,7 @@ class _HomePageState extends State<HomePage> {
                                 child: SizedBox(
                                   height: 300,
                                   child: Column(
-                                    mainAxisSize: MainAxisSize
-                                        .min, // ✅ Important: prevents overflow
+                                    mainAxisSize: MainAxisSize.min,
 
                                     children: [
                                       ClipRRect(
@@ -359,8 +360,7 @@ class _HomePageState extends State<HomePage> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
-                                          mainAxisSize: MainAxisSize
-                                              .min, // ✅ Ensures it only takes needed height
+                                          mainAxisSize: MainAxisSize.min,
 
                                           children: [
                                             Text(

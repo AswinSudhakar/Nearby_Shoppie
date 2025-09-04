@@ -6,6 +6,8 @@ import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/core/widgets/text_form_field.dart';
 import 'package:nearby_shoppiee/views/auth/view/login_page.dart';
 
+enum UserType { customer, shop }
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -19,7 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   String? _selectedCategory;
-
+  UserType? selectedUser;
   List<String> items = ['English', 'Hindi', 'Malayalam'];
   DropdownMenuItem<String?> buildmenuitems(String item) =>
       DropdownMenuItem(value: item, child: Text(item));
@@ -133,6 +135,52 @@ class _RegisterPageState extends State<RegisterPage> {
                     });
                   },
                 ),
+              ),
+
+              SizedBox(height: 10),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(text: 'Select The User Type'),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Radio<UserType>(
+                        value: UserType.customer,
+                        groupValue: selectedUser,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedUser = value;
+                          });
+                        },
+                      ),
+                      const Text("Customer"),
+                    ],
+                  ),
+                  SizedBox(width: 20),
+                  Row(
+                    children: [
+                      Radio<UserType>(
+                        value: UserType.shop,
+                        groupValue: selectedUser,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedUser = value;
+                          });
+                        },
+                      ),
+                      const Text("Shop"),
+                    ],
+                  ),
+                ],
               ),
 
               SizedBox(height: 45),

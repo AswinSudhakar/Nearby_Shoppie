@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/mock%20data/data/shop_data.dart';
+import 'package:nearby_shoppiee/mock%20data/models/shopmodel.dart';
 import 'package:nearby_shoppiee/views/shop/view/individual/individual_shop_page.dart';
 import 'package:nearby_shoppiee/views/shop/view/add_shop_page.dart';
 

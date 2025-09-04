@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/utils/snackbarhelper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/mock%20data/data/product_data.dart';
+import 'package:nearby_shoppiee/mock%20data/models/categorymodel.dart';
+import 'package:nearby_shoppiee/mock%20data/models/productmodel.dart';
 import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
 import 'package:nearby_shoppiee/views/product/product/view/product_details_page.dart';
 

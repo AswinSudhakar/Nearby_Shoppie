@@ -40,6 +40,8 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
+        labelStyle: TextStyle(fontFamily: 'Crimson-Bold'),
+        hintStyle: TextStyle(fontFamily: 'Crimson-Bold'),
         prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
         suffixIcon: suffixIcon != null
             ? GestureDetector(onTap: onTapSuffix, child: Icon(suffixIcon))

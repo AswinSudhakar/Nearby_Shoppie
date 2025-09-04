@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/mock%20data/data/product_data.dart';
+import 'package:nearby_shoppiee/mock%20data/models/categorymodel.dart';
+import 'package:nearby_shoppiee/mock%20data/models/productmodel.dart';
 import 'package:nearby_shoppiee/views/product/product/view/product_details_page.dart';
 
 class CategorywiseProductsPage extends StatelessWidget {

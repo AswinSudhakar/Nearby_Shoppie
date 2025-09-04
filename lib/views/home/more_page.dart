@@ -4,11 +4,12 @@ import 'package:nearby_shoppiee/core/constants/string_constants.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
 import 'package:nearby_shoppiee/views/auth/view/login_page.dart';
 import 'package:nearby_shoppiee/views/chat/view/chat_list_page.dart';
-import 'package:nearby_shoppiee/views/chat/view/chat_page.dart';
 import 'package:nearby_shoppiee/views/cart/views/cart_page.dart';
 import 'package:nearby_shoppiee/views/orders/view/orders_page.dart';
+import 'package:nearby_shoppiee/views/product/product/for%20shop%20/addProducts_page.dart';
+import 'package:nearby_shoppiee/views/profile/address/address_list_page.dart';
+import 'package:nearby_shoppiee/views/profile/view/myshop_profile.dart';
 import 'package:nearby_shoppiee/views/profile/view/profile_page.dart';
-import 'package:nearby_shoppiee/views/profile/view/my_address_page.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({super.key});
@@ -88,7 +89,7 @@ class MorePage extends StatelessWidget {
                   text: AppStrings.myAddress.tr,
                   onTap: () {
                     // NavigationHelper.push(context, MyAddressPage());
-                    Get.to(() => MyAddressPage());
+                    Get.to(() => AddressListPage());
                   },
                 ),
                 _buildDrawerItem(
@@ -115,14 +116,13 @@ class MorePage extends StatelessWidget {
                     Get.to(() => ChatListPage());
                   },
                 ),
-                // _buildDrawerItem(
-                //   icon: Icons.store,
-                //   text: 'Shops',
-                //   onTap: () {
-                //     NavigationHelper.push(context, ShopListPage());
-
-                //   },
-                // ),
+                _buildDrawerItem(
+                  icon: Icons.store,
+                  text: 'My Shop',
+                  onTap: () {
+                    Get.to(() => MyshopProfile());
+                  },
+                ),
                 _buildDrawerItem(
                   icon: Icons.logout,
                   text: AppStrings.logout.tr,
@@ -131,13 +131,13 @@ class MorePage extends StatelessWidget {
                   },
                 ),
 
-                // _buildDrawerItem(
-                //   icon: Icons.category,
-                //   text: 'categories',
-                //   onTap: () {
-                //     NavigationHelper.push(context, CategoriesPage());
-                //   },
-                // ),
+                _buildDrawerItem(
+                  icon: Icons.category,
+                  text: 'Add products',
+                  onTap: () {
+                    Get.to(() => AddProductPage());
+                  },
+                ),
                 // _buildDrawerItem(
                 //   icon: Icons.receipt_long,
                 //   text: AppStrings.productListPage.tr,

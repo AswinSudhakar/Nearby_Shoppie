@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:nearby_shoppiee/core/constants/string_constants.dart';
-import 'package:nearby_shoppiee/core/utils/snackbarhelper.dart';
 import 'package:nearby_shoppiee/core/widgets/elevated_button.dart';
 import 'package:nearby_shoppiee/core/widgets/text.dart';
-import 'package:nearby_shoppiee/mock%20data/mockdata.dart';
+import 'package:nearby_shoppiee/mock%20data/models/productmodel.dart';
 import 'package:nearby_shoppiee/views/cart/controller/cartcontroller_page.dart';
 import 'package:nearby_shoppiee/views/home/main_landing_page.dart';
 import 'package:nearby_shoppiee/views/product/category/view/categories_page.dart';
+import 'package:nearby_shoppiee/views/profile/view/my_address_page.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -178,7 +178,9 @@ class _CartState extends State<Cart> {
                   trailing: Wrap(
                     children: [
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => MyAddressPage());
+                        },
                         child: CustomText(text: 'Change'),
                       ),
                     ],
@@ -251,9 +253,10 @@ class _CartState extends State<Cart> {
                     Get.defaultDialog(
                       title: 'order Placed',
                       middleText:
-                          'Order Placed For ${cartController.cartItems.map((p) => p.name).toList()}',
+                          'Place Order For ${cartController.cartItems.map((p) => p.name).toList()}',
                       onConfirm: () {
-                        Get.back();
+                        Get.offAll(() => MainScreen());
+                        cartController.cartItems.clear();
                       },
                       confirmTextColor: Colors.white,
                       textConfirm: 'OK',
@@ -263,7 +266,6 @@ class _CartState extends State<Cart> {
                     //   message:
                     //       'Order Placed For ${cartController.cartItems.map((p) => p.name).toList()}',
                     // );
-                    Get.off(MainScreen());
                   },
                   backgroundColor: Colors.greenAccent,
                 ),
@@ -390,27 +392,43 @@ class _ProductCardState extends State<ProductCard> {
                     //     IconButton(onPressed: () {}, icon: Icon(Icons.add)),
                     //   ],
                     // ),
+                    // Row(
+                    //   children: [
+                    //     DropdownButton(
+                    //       hint: Text('Quantity'),
+                    //       value: selectedvalue1,
+                    //       items: items1.map(buildmenuitems).toList(),
+                    //       onChanged: (value) {
+                    //         setState(() {
+                    //           selectedvalue1 = value;
+                    //         });
+                    //       },
+                    //     ),
+                    //     DropdownButton(
+                    //       hint: Text('type'),
+                    //       value: selectedvalue2,
+                    //       items: items2.map(buildmenuitems).toList(),
+                    //       onChanged: (value) {
+                    //         setState(() {
+                    //           selectedvalue2 = value;
+                    //         });
+                    //       },
+                    //     ),
+                    //   ],
+                    // ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        DropdownButton(
-                          hint: Text('Quantity'),
-                          value: selectedvalue1,
-                          items: items1.map(buildmenuitems).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedvalue1 = value;
-                            });
-                          },
+                        IconButton(
+                          onPressed: () =>
+                              cartController.removeFromCart(widget.product),
+                          icon: const Icon(Icons.remove),
                         ),
-                        DropdownButton(
-                          hint: Text('type'),
-                          value: selectedvalue2,
-                          items: items2.map(buildmenuitems).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedvalue2 = value;
-                            });
-                          },
+                        CustomText(text: widget.product.quantity.toString()),
+                        IconButton(
+                          onPressed: () =>
+                              cartController.addToCart(widget.product),
+                          icon: const Icon(Icons.add),
                         ),
                       ],
                     ),
